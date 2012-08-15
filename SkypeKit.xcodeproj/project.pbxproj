@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65005D6013C9FC3300293F84 /* SKContactSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 65005D5E13C9FC3300293F84 /* SKContactSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65005D6513C9FC4600293F84 /* ContactSearchBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65005D6313C9FC4600293F84 /* ContactSearchBinding.hpp */; };
+		65005D6613C9FC4600293F84 /* ContactSearchBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65005D6413C9FC4600293F84 /* ContactSearchBinding.mm */; };
+		6504A8F115DBC29D006050DB /* mac-x86-skypekit in Resources */ = {isa = PBXBuildFile; fileRef = 65049B3215DBC298006050DB /* mac-x86-skypekit */; };
+		6504AB9A15DBC29D006050DB /* libskypekit-cppwrapper_2_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65049E9115DBC299006050DB /* libskypekit-cppwrapper_2_lib.a */; };
+		6504AB9B15DBC29D006050DB /* libskypekit-cyassl_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65049E9215DBC299006050DB /* libskypekit-cyassl_lib.a */; };
+		650D3B4413BC6B13008A2778 /* TransferBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 650D3B4213BC6B13008A2778 /* TransferBinding.hpp */; };
+		650D3B4513BC6B13008A2778 /* TransferBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 650D3B4313BC6B13008A2778 /* TransferBinding.mm */; };
+		650D3B4913BC7176008A2778 /* SKTransfer.h in Headers */ = {isa = PBXBuildFile; fileRef = 650D3B4713BC7176008A2778 /* SKTransfer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		650D3B4A13BC7176008A2778 /* SKTransfer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 650D3B4813BC7176008A2778 /* SKTransfer.mm */; };
+		65259D5B13CF4986002BF4B6 /* ObjectBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */; };
+		65259D5C13CF4986002BF4B6 /* ObjectBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */; };
+		65259D5F13CF5255002BF4B6 /* SKObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 65259D5D13CF5255002BF4B6 /* SKObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65259D6013CF5255002BF4B6 /* SKObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65259D5E13CF5255002BF4B6 /* SKObject.mm */; };
+		65456A7213B6614800DF7222 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65456A7113B6614800DF7222 /* AppKit.framework */; };
+		65456A7613B663AC00DF7222 /* ParticipantBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65456A7413B663AB00DF7222 /* ParticipantBinding.hpp */; };
+		65456A7713B663AC00DF7222 /* ParticipantBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65456A7513B663AB00DF7222 /* ParticipantBinding.mm */; };
+		65456A7E13B6655400DF7222 /* SKParticipant.h in Headers */ = {isa = PBXBuildFile; fileRef = 65456A7C13B6655300DF7222 /* SKParticipant.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65456A7F13B6655400DF7222 /* SKParticipant.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65456A7D13B6655400DF7222 /* SKParticipant.mm */; };
+		659E87C313AE9C4C0045F193 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659E87C213AE9C4C0045F193 /* Foundation.framework */; };
+		659E87DA13AE9CF90045F193 /* AccountBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 659E87C913AE9CF90045F193 /* AccountBinding.hpp */; };
+		659E87DB13AE9CF90045F193 /* AccountBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87CA13AE9CF90045F193 /* AccountBinding.mm */; };
+		659E87DC13AE9CF90045F193 /* ContactBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 659E87CB13AE9CF90045F193 /* ContactBinding.hpp */; };
+		659E87DD13AE9CF90045F193 /* ContactBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87CC13AE9CF90045F193 /* ContactBinding.mm */; };
+		659E87DE13AE9CF90045F193 /* ContactGroupBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 659E87CD13AE9CF90045F193 /* ContactGroupBinding.hpp */; };
+		659E87DF13AE9CF90045F193 /* ContactGroupBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87CE13AE9CF90045F193 /* ContactGroupBinding.mm */; };
+		659E87E013AE9CF90045F193 /* SKAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E87CF13AE9CF90045F193 /* SKAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659E87E113AE9CF90045F193 /* SKAccount.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87D013AE9CF90045F193 /* SKAccount.mm */; };
+		659E87E213AE9CF90045F193 /* SKContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E87D113AE9CF90045F193 /* SKContact.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659E87E313AE9CF90045F193 /* SKContact.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87D213AE9CF90045F193 /* SKContact.mm */; };
+		659E87E413AE9CF90045F193 /* SKContactGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E87D313AE9CF90045F193 /* SKContactGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659E87E513AE9CF90045F193 /* SKContactGroup.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87D413AE9CF90045F193 /* SKContactGroup.mm */; };
+		659E87E613AE9CF90045F193 /* SKSkype.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E87D513AE9CF90045F193 /* SKSkype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659E87E713AE9CF90045F193 /* SKSkype.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87D613AE9CF90045F193 /* SKSkype.mm */; };
+		65AB9B4313CA0149004DBF9F /* SKContactSearch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */; };
+		65D0F99913B349DB000AA38C /* SKConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F99713B349DB000AA38C /* SKConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65D0F99A13B349DB000AA38C /* SKConversation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F99813B349DB000AA38C /* SKConversation.mm */; };
+		65D0F9A213B34B22000AA38C /* ConversationBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F9A013B34B22000AA38C /* ConversationBinding.hpp */; };
+		65D0F9A313B34B22000AA38C /* ConversationBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9A113B34B22000AA38C /* ConversationBinding.mm */; };
+		65D0F9A613B3A29D000AA38C /* SkypeBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F9A413B3A29D000AA38C /* SkypeBinding.hpp */; };
+		65D0F9A713B3A29D000AA38C /* SkypeBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9A513B3A29D000AA38C /* SkypeBinding.mm */; };
+		65D0F9AA13B3A630000AA38C /* MessageBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F9A813B3A62F000AA38C /* MessageBinding.hpp */; };
+		65D0F9AB13B3A630000AA38C /* MessageBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9A913B3A630000AA38C /* MessageBinding.mm */; };
+		65D0F9AE13B3A7A7000AA38C /* SKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F9AC13B3A7A7000AA38C /* SKMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65D0F9AF13B3A7A7000AA38C /* SKMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */; };
+		65E6C6CF13C8AFAC0075EBB3 /* SKAudioDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65E6C6D013C8AFAC0075EBB3 /* SKAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		65005D5E13C9FC3300293F84 /* SKContactSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKContactSearch.h; sourceTree = "<group>"; };
+		65005D6313C9FC4600293F84 /* ContactSearchBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ContactSearchBinding.hpp; sourceTree = "<group>"; };
+		65005D6413C9FC4600293F84 /* ContactSearchBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactSearchBinding.mm; sourceTree = "<group>"; };
+		65049B3215DBC298006050DB /* mac-x86-skypekit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "mac-x86-skypekit"; sourceTree = "<group>"; };
+		65049E9115DBC299006050DB /* libskypekit-cppwrapper_2_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cppwrapper_2_lib.a"; sourceTree = "<group>"; };
+		65049E9215DBC299006050DB /* libskypekit-cyassl_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cyassl_lib.a"; sourceTree = "<group>"; };
+		650D3B4213BC6B13008A2778 /* TransferBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransferBinding.hpp; sourceTree = "<group>"; };
+		650D3B4313BC6B13008A2778 /* TransferBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TransferBinding.mm; sourceTree = "<group>"; };
+		650D3B4713BC7176008A2778 /* SKTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTransfer.h; sourceTree = "<group>"; };
+		650D3B4813BC7176008A2778 /* SKTransfer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKTransfer.mm; sourceTree = "<group>"; };
+		65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ObjectBinding.hpp; sourceTree = "<group>"; };
+		65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectBinding.mm; sourceTree = "<group>"; };
+		65259D5D13CF5255002BF4B6 /* SKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKObject.h; sourceTree = "<group>"; };
+		65259D5E13CF5255002BF4B6 /* SKObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKObject.mm; sourceTree = "<group>"; };
+		65456A7113B6614800DF7222 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		65456A7413B663AB00DF7222 /* ParticipantBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticipantBinding.hpp; sourceTree = "<group>"; };
+		65456A7513B663AB00DF7222 /* ParticipantBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParticipantBinding.mm; sourceTree = "<group>"; };
+		65456A7C13B6655300DF7222 /* SKParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKParticipant.h; sourceTree = "<group>"; };
+		65456A7D13B6655400DF7222 /* SKParticipant.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKParticipant.mm; sourceTree = "<group>"; };
+		659E87AD13AE9C2F0045F193 /* SkypeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SkypeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		659E87B313AE9C2F0045F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		659E87C213AE9C4C0045F193 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		659E87C913AE9CF90045F193 /* AccountBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AccountBinding.hpp; sourceTree = "<group>"; };
+		659E87CA13AE9CF90045F193 /* AccountBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AccountBinding.mm; sourceTree = "<group>"; };
+		659E87CB13AE9CF90045F193 /* ContactBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ContactBinding.hpp; sourceTree = "<group>"; };
+		659E87CC13AE9CF90045F193 /* ContactBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactBinding.mm; sourceTree = "<group>"; };
+		659E87CD13AE9CF90045F193 /* ContactGroupBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ContactGroupBinding.hpp; sourceTree = "<group>"; };
+		659E87CE13AE9CF90045F193 /* ContactGroupBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactGroupBinding.mm; sourceTree = "<group>"; };
+		659E87CF13AE9CF90045F193 /* SKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAccount.h; sourceTree = "<group>"; };
+		659E87D013AE9CF90045F193 /* SKAccount.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKAccount.mm; sourceTree = "<group>"; };
+		659E87D113AE9CF90045F193 /* SKContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKContact.h; sourceTree = "<group>"; };
+		659E87D213AE9CF90045F193 /* SKContact.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKContact.mm; sourceTree = "<group>"; };
+		659E87D313AE9CF90045F193 /* SKContactGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKContactGroup.h; sourceTree = "<group>"; };
+		659E87D413AE9CF90045F193 /* SKContactGroup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKContactGroup.mm; sourceTree = "<group>"; };
+		659E87D513AE9CF90045F193 /* SKSkype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSkype.h; sourceTree = "<group>"; };
+		659E87D613AE9CF90045F193 /* SKSkype.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKSkype.mm; sourceTree = "<group>"; };
+		659E87D813AE9CF90045F193 /* SkypeKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SkypeKit-Info.plist"; sourceTree = "<group>"; };
+		65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKContactSearch.mm; sourceTree = "<group>"; };
+		65D0F99713B349DB000AA38C /* SKConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKConversation.h; sourceTree = "<group>"; };
+		65D0F99813B349DB000AA38C /* SKConversation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKConversation.mm; sourceTree = "<group>"; };
+		65D0F9A013B34B22000AA38C /* ConversationBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConversationBinding.hpp; sourceTree = "<group>"; };
+		65D0F9A113B34B22000AA38C /* ConversationBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConversationBinding.mm; sourceTree = "<group>"; };
+		65D0F9A413B3A29D000AA38C /* SkypeBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SkypeBinding.hpp; sourceTree = "<group>"; };
+		65D0F9A513B3A29D000AA38C /* SkypeBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SkypeBinding.mm; sourceTree = "<group>"; };
+		65D0F9A813B3A62F000AA38C /* MessageBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MessageBinding.hpp; sourceTree = "<group>"; };
+		65D0F9A913B3A630000AA38C /* MessageBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageBinding.mm; sourceTree = "<group>"; };
+		65D0F9AC13B3A7A7000AA38C /* SKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKMessage.h; sourceTree = "<group>"; };
+		65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKMessage.mm; sourceTree = "<group>"; };
+		65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAudioDevice.h; sourceTree = "<group>"; };
+		65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAudioDevice.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		659E87A913AE9C2F0045F193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65456A7213B6614800DF7222 /* AppKit.framework in Frameworks */,
+				659E87C313AE9C4C0045F193 /* Foundation.framework in Frameworks */,
+				6504AB9A15DBC29D006050DB /* libskypekit-cppwrapper_2_lib.a in Frameworks */,
+				6504AB9B15DBC29D006050DB /* libskypekit-cyassl_lib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65049B2215DBC283006050DB /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				65049B2315DBC298006050DB /* SkypeKitSDK */,
+			);
+			name = Externals;
+			path = SkypeKit;
+			sourceTree = "<group>";
+		};
+		65049B2315DBC298006050DB /* SkypeKitSDK */ = {
+			isa = PBXGroup;
+			children = (
+				65049B2415DBC298006050DB /* bin */,
+				65049E8C15DBC299006050DB /* interfaces */,
+			);
+			name = SkypeKitSDK;
+			path = ../../SkypeKitSDK;
+			sourceTree = "<group>";
+		};
+		65049B2415DBC298006050DB /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				65049B3115DBC298006050DB /* mac-x86 */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		65049B3115DBC298006050DB /* mac-x86 */ = {
+			isa = PBXGroup;
+			children = (
+				65049B3215DBC298006050DB /* mac-x86-skypekit */,
+			);
+			path = "mac-x86";
+			sourceTree = "<group>";
+		};
+		65049E8C15DBC299006050DB /* interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				65049E8D15DBC299006050DB /* skype */,
+			);
+			path = interfaces;
+			sourceTree = "<group>";
+		};
+		65049E8D15DBC299006050DB /* skype */ = {
+			isa = PBXGroup;
+			children = (
+				65049E8E15DBC299006050DB /* cpp_embedded */,
+			);
+			path = skype;
+			sourceTree = "<group>";
+		};
+		65049E8E15DBC299006050DB /* cpp_embedded */ = {
+			isa = PBXGroup;
+			children = (
+				65049E8F15DBC299006050DB /* build */,
+			);
+			path = cpp_embedded;
+			sourceTree = "<group>";
+		};
+		65049E8F15DBC299006050DB /* build */ = {
+			isa = PBXGroup;
+			children = (
+				65049E9115DBC299006050DB /* libskypekit-cppwrapper_2_lib.a */,
+				65049E9215DBC299006050DB /* libskypekit-cyassl_lib.a */,
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
+		659E87A113AE9C2F0045F193 = {
+			isa = PBXGroup;
+			children = (
+				65049B2215DBC283006050DB /* Externals */,
+				659E87B613AE9C2F0045F193 /* SkypeKit */,
+				659E87AF13AE9C2F0045F193 /* Frameworks */,
+				659E87AE13AE9C2F0045F193 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		659E87AE13AE9C2F0045F193 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				659E87AD13AE9C2F0045F193 /* SkypeKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		659E87AF13AE9C2F0045F193 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65456A7113B6614800DF7222 /* AppKit.framework */,
+				659E87C213AE9C4C0045F193 /* Foundation.framework */,
+				659E87B213AE9C2F0045F193 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		659E87B213AE9C2F0045F193 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				659E87B313AE9C2F0045F193 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		659E87B613AE9C2F0045F193 /* SkypeKit */ = {
+			isa = PBXGroup;
+			children = (
+				659E87C813AE9CF90045F193 /* Bindings */,
+				659E87CF13AE9CF90045F193 /* SKAccount.h */,
+				659E87D013AE9CF90045F193 /* SKAccount.mm */,
+				659E87D113AE9CF90045F193 /* SKContact.h */,
+				659E87D213AE9CF90045F193 /* SKContact.mm */,
+				659E87D313AE9CF90045F193 /* SKContactGroup.h */,
+				659E87D413AE9CF90045F193 /* SKContactGroup.mm */,
+				65D0F99713B349DB000AA38C /* SKConversation.h */,
+				65D0F99813B349DB000AA38C /* SKConversation.mm */,
+				65D0F9AC13B3A7A7000AA38C /* SKMessage.h */,
+				65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */,
+				659E87D513AE9CF90045F193 /* SKSkype.h */,
+				659E87D613AE9CF90045F193 /* SKSkype.mm */,
+				65456A7C13B6655300DF7222 /* SKParticipant.h */,
+				65456A7D13B6655400DF7222 /* SKParticipant.mm */,
+				650D3B4713BC7176008A2778 /* SKTransfer.h */,
+				650D3B4813BC7176008A2778 /* SKTransfer.mm */,
+				65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */,
+				65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */,
+				65005D5E13C9FC3300293F84 /* SKContactSearch.h */,
+				65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */,
+				65259D5D13CF5255002BF4B6 /* SKObject.h */,
+				65259D5E13CF5255002BF4B6 /* SKObject.mm */,
+				659E87D813AE9CF90045F193 /* SkypeKit-Info.plist */,
+			);
+			path = SkypeKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		659E87C813AE9CF90045F193 /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				659E87C913AE9CF90045F193 /* AccountBinding.hpp */,
+				659E87CA13AE9CF90045F193 /* AccountBinding.mm */,
+				659E87CB13AE9CF90045F193 /* ContactBinding.hpp */,
+				659E87CC13AE9CF90045F193 /* ContactBinding.mm */,
+				659E87CD13AE9CF90045F193 /* ContactGroupBinding.hpp */,
+				659E87CE13AE9CF90045F193 /* ContactGroupBinding.mm */,
+				65D0F9A013B34B22000AA38C /* ConversationBinding.hpp */,
+				65D0F9A113B34B22000AA38C /* ConversationBinding.mm */,
+				65D0F9A413B3A29D000AA38C /* SkypeBinding.hpp */,
+				65D0F9A513B3A29D000AA38C /* SkypeBinding.mm */,
+				65D0F9A813B3A62F000AA38C /* MessageBinding.hpp */,
+				65D0F9A913B3A630000AA38C /* MessageBinding.mm */,
+				65456A7413B663AB00DF7222 /* ParticipantBinding.hpp */,
+				65456A7513B663AB00DF7222 /* ParticipantBinding.mm */,
+				650D3B4213BC6B13008A2778 /* TransferBinding.hpp */,
+				650D3B4313BC6B13008A2778 /* TransferBinding.mm */,
+				65005D6313C9FC4600293F84 /* ContactSearchBinding.hpp */,
+				65005D6413C9FC4600293F84 /* ContactSearchBinding.mm */,
+				65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */,
+				65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */,
+			);
+			path = Bindings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		659E87AA13AE9C2F0045F193 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				659E87E013AE9CF90045F193 /* SKAccount.h in Headers */,
+				659E87E213AE9CF90045F193 /* SKContact.h in Headers */,
+				659E87E413AE9CF90045F193 /* SKContactGroup.h in Headers */,
+				659E87E613AE9CF90045F193 /* SKSkype.h in Headers */,
+				659E87DA13AE9CF90045F193 /* AccountBinding.hpp in Headers */,
+				659E87DC13AE9CF90045F193 /* ContactBinding.hpp in Headers */,
+				659E87DE13AE9CF90045F193 /* ContactGroupBinding.hpp in Headers */,
+				65D0F99913B349DB000AA38C /* SKConversation.h in Headers */,
+				65D0F9A213B34B22000AA38C /* ConversationBinding.hpp in Headers */,
+				65D0F9A613B3A29D000AA38C /* SkypeBinding.hpp in Headers */,
+				65D0F9AA13B3A630000AA38C /* MessageBinding.hpp in Headers */,
+				65D0F9AE13B3A7A7000AA38C /* SKMessage.h in Headers */,
+				65456A7613B663AC00DF7222 /* ParticipantBinding.hpp in Headers */,
+				65456A7E13B6655400DF7222 /* SKParticipant.h in Headers */,
+				650D3B4413BC6B13008A2778 /* TransferBinding.hpp in Headers */,
+				650D3B4913BC7176008A2778 /* SKTransfer.h in Headers */,
+				65E6C6CF13C8AFAC0075EBB3 /* SKAudioDevice.h in Headers */,
+				65005D6013C9FC3300293F84 /* SKContactSearch.h in Headers */,
+				65005D6513C9FC4600293F84 /* ContactSearchBinding.hpp in Headers */,
+				65259D5B13CF4986002BF4B6 /* ObjectBinding.hpp in Headers */,
+				65259D5F13CF5255002BF4B6 /* SKObject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		659E87AC13AE9C2F0045F193 /* SkypeKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 659E87BF13AE9C2F0045F193 /* Build configuration list for PBXNativeTarget "SkypeKit" */;
+			buildPhases = (
+				659E87A813AE9C2F0045F193 /* Sources */,
+				659E87A913AE9C2F0045F193 /* Frameworks */,
+				659E87AA13AE9C2F0045F193 /* Headers */,
+				659E87AB13AE9C2F0045F193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkypeKit;
+			productName = SkypeKit;
+			productReference = 659E87AD13AE9C2F0045F193 /* SkypeKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		659E87A313AE9C2F0045F193 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+			};
+			buildConfigurationList = 659E87A613AE9C2F0045F193 /* Build configuration list for PBXProject "SkypeKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 659E87A113AE9C2F0045F193;
+			productRefGroup = 659E87AE13AE9C2F0045F193 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				659E87AC13AE9C2F0045F193 /* SkypeKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		659E87AB13AE9C2F0045F193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6504A8F115DBC29D006050DB /* mac-x86-skypekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		659E87A813AE9C2F0045F193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				659E87DB13AE9CF90045F193 /* AccountBinding.mm in Sources */,
+				659E87DD13AE9CF90045F193 /* ContactBinding.mm in Sources */,
+				659E87DF13AE9CF90045F193 /* ContactGroupBinding.mm in Sources */,
+				659E87E113AE9CF90045F193 /* SKAccount.mm in Sources */,
+				659E87E313AE9CF90045F193 /* SKContact.mm in Sources */,
+				659E87E513AE9CF90045F193 /* SKContactGroup.mm in Sources */,
+				659E87E713AE9CF90045F193 /* SKSkype.mm in Sources */,
+				65D0F99A13B349DB000AA38C /* SKConversation.mm in Sources */,
+				65D0F9A313B34B22000AA38C /* ConversationBinding.mm in Sources */,
+				65D0F9A713B3A29D000AA38C /* SkypeBinding.mm in Sources */,
+				65D0F9AB13B3A630000AA38C /* MessageBinding.mm in Sources */,
+				65D0F9AF13B3A7A7000AA38C /* SKMessage.mm in Sources */,
+				65456A7713B663AC00DF7222 /* ParticipantBinding.mm in Sources */,
+				65456A7F13B6655400DF7222 /* SKParticipant.mm in Sources */,
+				650D3B4513BC6B13008A2778 /* TransferBinding.mm in Sources */,
+				650D3B4A13BC7176008A2778 /* SKTransfer.mm in Sources */,
+				65E6C6D013C8AFAC0075EBB3 /* SKAudioDevice.m in Sources */,
+				65005D6613C9FC4600293F84 /* ContactSearchBinding.mm in Sources */,
+				65AB9B4313CA0149004DBF9F /* SKContactSearch.mm in Sources */,
+				65259D5C13CF4986002BF4B6 /* ObjectBinding.mm in Sources */,
+				65259D6013CF5255002BF4B6 /* SKObject.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		659E87BD13AE9C2F0045F193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SKYPEKIT_SDK}/**";
+				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/interfaces/skype/cpp_embedded/build";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SKYPEKIT_SDK = "\"${SRCROOT}/../SkypeKitSDK\"";
+			};
+			name = Debug;
+		};
+		659E87BE13AE9C2F0045F193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SKYPEKIT_SDK}/**";
+				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/interfaces/skype/cpp_embedded/build";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+				SKYPEKIT_SDK = "\"${SRCROOT}/../SkypeKitSDK\"";
+			};
+			name = Release;
+		};
+		659E87C013AE9C2F0045F193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "SkypeKit/SkypeKit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		659E87C113AE9C2F0045F193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "SkypeKit/SkypeKit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		659E87A613AE9C2F0045F193 /* Build configuration list for PBXProject "SkypeKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				659E87BD13AE9C2F0045F193 /* Debug */,
+				659E87BE13AE9C2F0045F193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		659E87BF13AE9C2F0045F193 /* Build configuration list for PBXNativeTarget "SkypeKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				659E87C013AE9C2F0045F193 /* Debug */,
+				659E87C113AE9C2F0045F193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 659E87A313AE9C2F0045F193 /* Project object */;
+}
