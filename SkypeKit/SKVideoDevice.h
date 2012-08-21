@@ -4,7 +4,6 @@
 
 #import <Foundation/NSObject.h>
 
-
 @interface SKVideoDevice : NSObject {
     NSString* _name;
     NSString* _path;

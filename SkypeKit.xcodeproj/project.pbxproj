@@ -54,11 +54,11 @@
 		65D0F9AF13B3A7A7000AA38C /* SKMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */; };
 		65E6C6CF13C8AFAC0075EBB3 /* SKAudioDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65E6C6D013C8AFAC0075EBB3 /* SKAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */; };
-		65FA9FFA15E438BD00255238 /* SKVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FA9FF815E438BD00255238 /* SKVideo.h */; };
+		65FA9FFA15E438BD00255238 /* SKVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FA9FF815E438BD00255238 /* SKVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65FA9FFB15E438BD00255238 /* SKVideo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65FA9FF915E438BD00255238 /* SKVideo.mm */; };
 		65FA9FFF15E43C6400255238 /* VideoBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65FA9FFD15E43C6400255238 /* VideoBinding.hpp */; };
 		65FAA00015E43C6400255238 /* VideoBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65FA9FFE15E43C6400255238 /* VideoBinding.mm */; };
-		65FAA00315E447B800255238 /* SKVideoDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FAA00115E447B700255238 /* SKVideoDevice.h */; };
+		65FAA00315E447B800255238 /* SKVideoDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FAA00115E447B700255238 /* SKVideoDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65FAA00415E447B800255238 /* SKVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FAA00215E447B800255238 /* SKVideoDevice.m */; };
 /* End PBXBuildFile section */
 
