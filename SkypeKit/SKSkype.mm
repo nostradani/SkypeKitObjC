@@ -16,6 +16,7 @@
 #import "SKContactGroup.h"
 #import "SKConversation.h"
 #import "SKAudioDevice.h"
+#import "SKVideoDevice.h"
 
 #import "SkypeBinding.hpp"
 #import "AccountBinding.hpp"
@@ -200,6 +201,24 @@
             [result addObject:[SKAudioDevice deviceWithHandle:[NSString stringWithCString:handleList[i] encoding:NSUTF8StringEncoding]
                                                          name:[NSString stringWithCString:nameList[i] encoding:NSUTF8StringEncoding]
                                                     productId:[NSString stringWithCString:productIdList[i] encoding:NSUTF8StringEncoding]]];
+        }
+    }
+    
+    return result;
+}
+
+- (NSArray*) availableVideoDevices {
+    Sid::List_String deviceNames;
+    Sid::List_String devicePaths;
+    uint count = 0;
+    
+    NSMutableArray* result = nil;
+    
+    if (self.skype->GetAvailableVideoDevices(deviceNames, devicePaths, count)) {        
+        result = [NSMutableArray arrayWithCapacity:count];
+        for (NSUInteger i=0; i<count; i++) {
+            [result addObject:[SKVideoDevice deviceWithName:[NSString stringWithCString:deviceNames[i] encoding:NSUTF8StringEncoding]
+                                                       path:[NSString stringWithCString:devicePaths[i] encoding:NSUTF8StringEncoding]]];
         }
     }
     

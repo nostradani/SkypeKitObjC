@@ -62,6 +62,7 @@
 
 - (NSArray*) availableOutputDevices;
 - (NSArray*) availableRecordingDevices;
+- (NSArray*) availableVideoDevices;
 
 - (BOOL) selectCallInDevice:(SKAudioDevice*)inDevice callOutDevice:(SKAudioDevice*) outDevice waveDevice:(SKAudioDevice*) waveDevice;
 

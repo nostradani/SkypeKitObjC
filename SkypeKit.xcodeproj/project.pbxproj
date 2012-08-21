@@ -54,6 +54,12 @@
 		65D0F9AF13B3A7A7000AA38C /* SKMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */; };
 		65E6C6CF13C8AFAC0075EBB3 /* SKAudioDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65E6C6D013C8AFAC0075EBB3 /* SKAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */; };
+		65FA9FFA15E438BD00255238 /* SKVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FA9FF815E438BD00255238 /* SKVideo.h */; };
+		65FA9FFB15E438BD00255238 /* SKVideo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65FA9FF915E438BD00255238 /* SKVideo.mm */; };
+		65FA9FFF15E43C6400255238 /* VideoBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65FA9FFD15E43C6400255238 /* VideoBinding.hpp */; };
+		65FAA00015E43C6400255238 /* VideoBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65FA9FFE15E43C6400255238 /* VideoBinding.mm */; };
+		65FAA00315E447B800255238 /* SKVideoDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FAA00115E447B700255238 /* SKVideoDevice.h */; };
+		65FAA00415E447B800255238 /* SKVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FAA00215E447B800255238 /* SKVideoDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +113,12 @@
 		65D0F9AD13B3A7A7000AA38C /* SKMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKMessage.mm; sourceTree = "<group>"; };
 		65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAudioDevice.h; sourceTree = "<group>"; };
 		65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAudioDevice.m; sourceTree = "<group>"; };
+		65FA9FF815E438BD00255238 /* SKVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKVideo.h; sourceTree = "<group>"; };
+		65FA9FF915E438BD00255238 /* SKVideo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKVideo.mm; sourceTree = "<group>"; };
+		65FA9FFD15E43C6400255238 /* VideoBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VideoBinding.hpp; sourceTree = "<group>"; };
+		65FA9FFE15E43C6400255238 /* VideoBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VideoBinding.mm; sourceTree = "<group>"; };
+		65FAA00115E447B700255238 /* SKVideoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKVideoDevice.h; sourceTree = "<group>"; };
+		65FAA00215E447B800255238 /* SKVideoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKVideoDevice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,8 +262,12 @@
 				650D3B4813BC7176008A2778 /* SKTransfer.mm */,
 				65E6C6CD13C8AFAC0075EBB3 /* SKAudioDevice.h */,
 				65E6C6CE13C8AFAC0075EBB3 /* SKAudioDevice.m */,
+				65FAA00115E447B700255238 /* SKVideoDevice.h */,
+				65FAA00215E447B800255238 /* SKVideoDevice.m */,
 				65005D5E13C9FC3300293F84 /* SKContactSearch.h */,
 				65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */,
+				65FA9FF815E438BD00255238 /* SKVideo.h */,
+				65FA9FF915E438BD00255238 /* SKVideo.mm */,
 				65259D5D13CF5255002BF4B6 /* SKObject.h */,
 				65259D5E13CF5255002BF4B6 /* SKObject.mm */,
 				659E87D813AE9CF90045F193 /* SkypeKit-Info.plist */,
@@ -282,6 +298,8 @@
 				65005D6413C9FC4600293F84 /* ContactSearchBinding.mm */,
 				65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */,
 				65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */,
+				65FA9FFD15E43C6400255238 /* VideoBinding.hpp */,
+				65FA9FFE15E43C6400255238 /* VideoBinding.mm */,
 			);
 			path = Bindings;
 			sourceTree = "<group>";
@@ -314,6 +332,9 @@
 				65005D6513C9FC4600293F84 /* ContactSearchBinding.hpp in Headers */,
 				65259D5B13CF4986002BF4B6 /* ObjectBinding.hpp in Headers */,
 				65259D5F13CF5255002BF4B6 /* SKObject.h in Headers */,
+				65FA9FFA15E438BD00255238 /* SKVideo.h in Headers */,
+				65FA9FFF15E43C6400255238 /* VideoBinding.hpp in Headers */,
+				65FAA00315E447B800255238 /* SKVideoDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +421,9 @@
 				65AB9B4313CA0149004DBF9F /* SKContactSearch.mm in Sources */,
 				65259D5C13CF4986002BF4B6 /* ObjectBinding.mm in Sources */,
 				65259D6013CF5255002BF4B6 /* SKObject.mm in Sources */,
+				65FA9FFB15E438BD00255238 /* SKVideo.mm in Sources */,
+				65FAA00015E43C6400255238 /* VideoBinding.mm in Sources */,
+				65FAA00415E447B800255238 /* SKVideoDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

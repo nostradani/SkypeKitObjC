@@ -12,6 +12,7 @@
 #import "ParticipantBinding.hpp"
 #import "TransferBinding.hpp"
 #import "ContactSearchBinding.hpp"
+#import "VideoBinding.hpp"
 
 #import "SKSkype.h"
 
@@ -48,6 +49,9 @@ ContactSearch* SkypeImp::newContactSearch(int oid) {
     return new ContactSearchImp(oid, this);
 }
 
+Video* SkypeImp::newVideo(int oid) {
+    return new VideoImp(oid, this);
+}
 
 void SkypeImp::OnMessage(const Message::Ref& message, const bool& changesInboxTimestamp, 
                          const Message::Ref& supersedesHistoryMessage, const Conversation::Ref& conversation) {

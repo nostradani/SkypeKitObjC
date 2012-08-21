@@ -17,6 +17,7 @@ class SkypeImp : public Skype {
     Participant* newParticipant(int oid);
     Transfer* newTransfer(int oid);
     ContactSearch* newContactSearch(int oid);
+    Video* newVideo(int oid);
     
     SKSkype* _instance;
 public:    
