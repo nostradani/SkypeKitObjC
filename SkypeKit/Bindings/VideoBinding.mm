@@ -5,7 +5,7 @@
 #import "VideoBinding.hpp"
 
 
-VideoImp::VideoImp(unsigned int oid, SERootObject* root) : Video(oid, root), ObjectImp([SKVideo class]){
+VideoImp::VideoImp(unsigned int oid, SERootObject* root) : Video(oid, root), ObjectImp([SKVideo class], root){
 };
 
 void VideoImp::OnChange(int prop) {

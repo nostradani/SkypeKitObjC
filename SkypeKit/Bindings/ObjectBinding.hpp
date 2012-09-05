@@ -10,18 +10,20 @@
 class ObjectImp {
 private:
     Class _objectClass;
+    Skype* _skype;
 protected:
     SKObject* _objectInstance;
     
     virtual SEReference coreRef() = 0;
     
 public:
-    ObjectImp(Class objectClass);
+    ObjectImp(Class objectClass, SERootObject* skype);
     ~ObjectImp();
     
     void unbind();
     void bind();
     
+    Skype* getSkype();
     SKObject* getObjectInstance();
 };
 

@@ -5,7 +5,7 @@
 #import "TransferBinding.hpp"
 
 
-TransferImp::TransferImp(unsigned int oid, SERootObject* root) : Transfer(oid, root), ObjectImp([SKTransfer class]){
+TransferImp::TransferImp(unsigned int oid, SERootObject* root) : Transfer(oid, root), ObjectImp([SKTransfer class], root){
 };
 
 void TransferImp::OnChange(int prop) {

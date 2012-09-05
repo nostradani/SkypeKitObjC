@@ -4,7 +4,7 @@
 
 #import "MessageBinding.hpp"
 
-MessageImp::MessageImp(unsigned int oid, SERootObject* root) : Message(oid, root), ObjectImp([SKMessage class]){
+MessageImp::MessageImp(unsigned int oid, SERootObject* root) : Message(oid, root), ObjectImp([SKMessage class], root){
 };
 
 MessageImp::~MessageImp() {

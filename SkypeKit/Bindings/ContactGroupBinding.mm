@@ -4,7 +4,7 @@
 
 #import "ContactGroupBinding.hpp"
 
-ContactGroupImp::ContactGroupImp(unsigned int oid, SERootObject* root) : ContactGroup(oid, root), ObjectImp([SKContactGroup class]){
+ContactGroupImp::ContactGroupImp(unsigned int oid, SERootObject* root) : ContactGroup(oid, root), ObjectImp([SKContactGroup class], root){
 };
 
 

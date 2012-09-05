@@ -4,7 +4,7 @@
 
 #import "AccountBinding.hpp"
 
-AccountImp::AccountImp(unsigned int oid, SERootObject* root) : ObjectImp([SKAccount class]), Account(oid, root){
+AccountImp::AccountImp(unsigned int oid, SERootObject* root) : ObjectImp([SKAccount class], root), Account(oid, root){
 };
 
 AccountImp::~AccountImp() {

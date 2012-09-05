@@ -7,7 +7,7 @@
 #import "SKConversation.h"
 
 
-ConversationImp::ConversationImp(unsigned int oid, SERootObject* root) : Conversation(oid, root), ObjectImp([SKConversation class]){
+ConversationImp::ConversationImp(unsigned int oid, SERootObject* root) : Conversation(oid, root), ObjectImp([SKConversation class], root){
 };
 
 void ConversationImp::OnChange(int prop) {

@@ -8,13 +8,18 @@
 
 #import "SKObject.h"
 
-ObjectImp::ObjectImp(Class objectClass){
+ObjectImp::ObjectImp(Class objectClass, SERootObject* skype){
     this->_objectInstance = nil;
     this->_objectClass = objectClass;
+    this->_skype = dynamic_cast<Skype*>(skype);
 }
 
 ObjectImp::~ObjectImp() {
     this->_objectInstance = nil;
+}
+
+Skype* ObjectImp::getSkype() {
+    return this->_skype;
 }
 
 SKObject* ObjectImp::getObjectInstance() {

@@ -5,7 +5,7 @@
 #import "ParticipantBinding.hpp"
 
 
-ParticipantImp::ParticipantImp(unsigned int oid, SERootObject* root) : Participant(oid, root), ObjectImp([SKParticipant class]){
+ParticipantImp::ParticipantImp(unsigned int oid, SERootObject* root) : Participant(oid, root), ObjectImp([SKParticipant class], root){
 };
 
 void ParticipantImp::OnChange(int prop) {

@@ -5,7 +5,7 @@
 #import "ContactSearchBinding.hpp"
 
 
-ContactSearchImp::ContactSearchImp(unsigned int oid, SERootObject* root) : ContactSearch(oid, root), ObjectImp([SKContactSearch class]){
+ContactSearchImp::ContactSearchImp(unsigned int oid, SERootObject* root) : ContactSearch(oid, root), ObjectImp([SKContactSearch class], root){
 };
 
 void ContactSearchImp::OnChange(int prop) {

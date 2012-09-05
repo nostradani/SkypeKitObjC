@@ -6,7 +6,7 @@
 #import "SKContact.h"
 
 
-ContactImp::ContactImp(unsigned int oid, SERootObject* root) : Contact(oid, root), ObjectImp([SKContact class]){
+ContactImp::ContactImp(unsigned int oid, SERootObject* root) : Contact(oid, root), ObjectImp([SKContact class], root){
 };
 
 void ContactImp::OnChange(int prop) {
