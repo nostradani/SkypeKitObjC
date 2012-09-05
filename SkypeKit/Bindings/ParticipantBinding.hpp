@@ -24,6 +24,9 @@ protected:
 
 @interface SKParticipant (Binding)
 
++ (SKParticipantTextStatus) decodeTextStatus:(Participant::TEXT_STATUS) textStatus;
++ (Participant::TEXT_STATUS) encodeTextStatus:(SKParticipantTextStatus) textStatus;
+
 @property (nonatomic, readonly) ParticipantImp* coreParticipant;
 
 @end
