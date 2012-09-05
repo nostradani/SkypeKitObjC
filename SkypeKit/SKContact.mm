@@ -667,6 +667,14 @@
     }
 }
 
+- (void)setBuddyStatus:(BOOL)isBuddy {
+    self.coreContact->SetBuddyStatus(isBuddy);
+}
+
+- (void) setBlocked:(BOOL) isBlocked {
+    self.coreContact->SetBlocked(isBlocked);
+}
+
 - (void)dealloc {
     [self->_fullName release];
     [self->_birthday release];

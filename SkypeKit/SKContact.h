@@ -71,6 +71,8 @@ typedef enum {
 }
 
 - (BOOL) isMemberOfGroup:(SKContactGroup*) group;
+- (void) setBuddyStatus:(BOOL) isBuddy;
+- (void) setBlocked:(BOOL) isBlocked;
 
 @property (nonatomic, assign) id<SKContactDelegate> delegate;
 
