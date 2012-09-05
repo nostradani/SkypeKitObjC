@@ -20,14 +20,18 @@
 - (NSString*) coreDisplayName;
 - (NSString*) coreIdentity;
 - (SKConversationType) type;
+- (SKConversationLocalLiveStatus) coreLocalLiveStatus;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* identity;
 @property (nonatomic, assign, readwrite) SKConversationType type;
+@property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
 
 @end
 
 @implementation SKConversation
+
+@synthesize delegate = _delegate;
 
 - (NSString*) coreDisplayName {
     Sid::String name;
@@ -48,6 +52,18 @@
     if (self.coreConversation->GetPropIdentity(name)) {
         [self markPropertyAsCached:@"identity"];
         result = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    }
+    
+    return result;
+}
+
+- (SKConversationLocalLiveStatus)coreLocalLiveStatus {
+    Conversation::LOCAL_LIVESTATUS status;
+    SKConversationLocalLiveStatus result = SKConversationLocalLiveStatusUndefined;
+    
+    if (self.coreConversation->GetPropLocalLivestatus(status)) {
+        [self markPropertyAsCached:@"localLiveStatus"];
+        result = [SKConversation decodeLocalLiveStatus:status];
     }
     
     return result;
@@ -166,12 +182,27 @@
     if (![self isPropertyCached:@"type"]) {
         self->_type = [self coreType];
     }
+    
     return self->_type;
 }
 
 - (void)setType:(SKConversationType) aType {
     if (self->_type != aType) {
         self->_type = aType;
+    }
+}
+
+- (SKConversationLocalLiveStatus)localLiveStatus {
+    if (![self isPropertyCached:@"localLiveStatus"]) {
+        self->_localLiveStatus = [self coreLocalLiveStatus];
+    }
+    
+    return self->_localLiveStatus;
+}
+
+- (void)setLocalLiveStatus:(SKConversationLocalLiveStatus)localLiveStatus {
+    if (self->_localLiveStatus != localLiveStatus) {
+        self->_localLiveStatus = localLiveStatus;
     }
 }
 
@@ -204,21 +235,37 @@
     return self.coreConversation->RingOthers();
 }
 
-- (BOOL)leaveLiveSession {
+- (BOOL) leaveLiveSession {
     return self.coreConversation->LeaveLiveSession();
+}
+
+- (BOOL)joinLiveSession {
+    return self.coreConversation->JoinLiveSession();
 }
 
 - (void)onChange:(int)prop {
     switch (prop) {
-        case Conversation::P_IDENTITY:
+        case Conversation::P_IDENTITY: {
             self.identity = [self coreIdentity];
             break;
+        }
             
-        case Conversation::P_TYPE:
+        case Conversation::P_TYPE: {
             self.type = [self coreType];
+            break;
+        }
             
-        case Conversation::P_DISPLAYNAME:
+        case Conversation::P_DISPLAYNAME: {
             self.displayName = [self coreDisplayName];
+            break;
+        }
+            
+        case Conversation::P_LOCAL_LIVESTATUS: {
+            SKConversationLocalLiveStatus status = [self coreLocalLiveStatus];
+            self.localLiveStatus = status;
+            [self.delegate conversation:self didChangeLocalLiveStatus:status];
+            break;
+        }
             
         default:
             break;
