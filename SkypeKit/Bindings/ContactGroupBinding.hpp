@@ -27,4 +27,9 @@ protected:
 
 @property (nonatomic, readonly) ContactGroupImp* coreContactGroup;
 
+- (void) onContactChange:(const ContactRef&) contact;
+
++ (SKContactGroupType) decodeType:(ContactGroup::TYPE) type;
++ (ContactGroup::TYPE) encodeType:(SKContactGroupType) type;
+
 @end

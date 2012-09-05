@@ -29,6 +29,7 @@
 - (NSString*) coreDisplayName;
 - (NSString*) coreSkypeName;
 - (NSData*) coreAvatarData;
+- (NSString*) coreReceivedAuthRequest;
 
 @property (nonatomic, copy, readwrite) NSString* fullName;
 @property (nonatomic, copy, readwrite) NSDate* birthday;
@@ -46,6 +47,7 @@
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* skypeName;
 @property (nonatomic, retain, readwrite) NSData* avatarData;
+@property (nonatomic, copy, readwrite) NSString* receivedAuthRequest;
 
 @end
 
@@ -270,9 +272,21 @@
         [components setYear:(aBirthday / 10000)];
         [components setMonth:((aBirthday % 100000) / 100)];
         [components setDay:(aBirthday % 100)];
-
+        
         result = [[NSCalendar currentCalendar] dateFromComponents:components];
         [components release];
+    }
+    
+    return result;
+}
+
+- (NSString *)coreReceivedAuthRequest {
+    Sid::String receivedAuthRequest;
+    NSString* result = nil;
+    
+    if (self.coreContact->GetPropReceivedAuthrequest(receivedAuthRequest)) {
+        [self markPropertyAsCached:@"receivedAuthRequest"];
+        [NSString stringWithCString:receivedAuthRequest encoding:NSUTF8StringEncoding];
     }
     
     return result;
@@ -634,6 +648,22 @@
             
         default:
             break;
+    }
+}
+
+- (NSString *)receivedAuthRequest {
+    if (![self isPropertyCached:@"receivedAuthRequest"]) {
+        [self->_receivedAuthRequest release];
+        self->_receivedAuthRequest = [[self coreReceivedAuthRequest] copy];
+    }
+    
+    return self->_receivedAuthRequest;
+}
+
+- (void)setReceivedAuthRequest:(NSString *)receivedAuthRequest {
+    if (self->_receivedAuthRequest != receivedAuthRequest) {
+        [self->_receivedAuthRequest release];
+        self->_receivedAuthRequest = [receivedAuthRequest copy];
     }
 }
 

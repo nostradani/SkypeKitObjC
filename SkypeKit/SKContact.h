@@ -66,6 +66,8 @@ typedef enum {
     NSString* _skypeName;
     NSString* _moodText;
     NSData* _avatarData;
+    
+    NSString* _receivedAuthRequest;
 }
 
 - (BOOL) isMemberOfGroup:(SKContactGroup*) group;
@@ -91,5 +93,7 @@ typedef enum {
 @property (nonatomic, readonly) NSData* avatarData;
 @property (nonatomic, readonly) SKContactAvailability availability;
 @property (nonatomic, readonly) NSString* moodText;
+
+@property (nonatomic, readonly) NSString* receivedAuthRequest;
 
 @end

@@ -27,6 +27,9 @@ protected:
 + (SKConversationListType) decodeListType:(Conversation::LIST_TYPE) type;
 + (Conversation::LIST_TYPE) encodeListType:(SKConversationListType) type;
 
++ (SKConversationLocalLiveStatus) decodeLocalLiveStatus:(Conversation::LOCAL_LIVESTATUS) status;
++ (Conversation::LOCAL_LIVESTATUS) encodeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
+
 @property (nonatomic, readonly) ConversationImp* coreConversation;
 
 @end

@@ -81,4 +81,148 @@ ConversationImp::~ConversationImp() {
     return result;
 }
 
++ (Conversation::LOCAL_LIVESTATUS) encodeLocalLiveStatus:(SKConversationLocalLiveStatus)status {
+    Conversation::LOCAL_LIVESTATUS result = Conversation::NONE;
+    
+    switch (status) {
+        case SKConversationLocalLiveStatusNone: {
+            result = Conversation::NONE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusIMLive: {
+            result = Conversation::IM_LIVE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusOnHoldLocally: {
+            result = Conversation::ON_HOLD_LOCALLY;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusOnHoldRemotely: {
+            result = Conversation::ON_HOLD_REMOTELY;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusOthersAreLive: {
+            result = Conversation::OTHERS_ARE_LIVE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusOthersAreLiveFull: {
+            result = Conversation::OTHERS_ARE_LIVE_FULL;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusPlayingVoiceMessage: {
+            result = Conversation::PLAYING_VOICE_MESSAGE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusRecentlyLive: {
+            result = Conversation::RECENTLY_LIVE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusRecordingVoiceMessage: {
+            result = Conversation::RECORDING_VOICE_MESSAGE;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusRingingForMe: {
+            result = Conversation::RINGING_FOR_ME;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusStarting: {
+            result = Conversation::STARTING;
+            break;
+        }
+            
+        case SKConversationLocalLiveStatusTransferring: {
+            result = Conversation::TRANSFERRING;
+            break;
+        }
+            
+        default: {
+            break;
+        }
+    }
+    
+    return result;
+}
+
++ (SKConversationLocalLiveStatus)decodeLocalLiveStatus:(Conversation::LOCAL_LIVESTATUS)status {
+    SKConversationLocalLiveStatus result = SKConversationLocalLiveStatusUndefined;
+    
+    switch (status) {
+        case Conversation::NONE: {
+            result = SKConversationLocalLiveStatusNone;
+            break;
+        }
+            
+        case Conversation::IM_LIVE: {
+            result = SKConversationLocalLiveStatusIMLive;
+            break;
+        }
+            
+        case Conversation::ON_HOLD_LOCALLY: {
+            result = SKConversationLocalLiveStatusOnHoldLocally;
+            break;
+        }
+            
+        case Conversation::ON_HOLD_REMOTELY: {
+            result = SKConversationLocalLiveStatusOnHoldRemotely;
+            break;
+        }
+            
+        case Conversation::OTHERS_ARE_LIVE: {
+            result = SKConversationLocalLiveStatusOthersAreLive;
+            break;
+        }
+            
+        case Conversation::OTHERS_ARE_LIVE_FULL: {
+            result = SKConversationLocalLiveStatusOthersAreLiveFull;
+            break;
+        }
+            
+        case Conversation::PLAYING_VOICE_MESSAGE: {
+            result = SKConversationLocalLiveStatusPlayingVoiceMessage;
+            break;
+        }
+            
+        case Conversation::RECENTLY_LIVE: {
+            result = SKConversationLocalLiveStatusRecentlyLive;
+            break;
+        }
+            
+        case Conversation::RECORDING_VOICE_MESSAGE: {
+            result = SKConversationLocalLiveStatusRecordingVoiceMessage;
+            break;
+        }
+            
+        case Conversation::RINGING_FOR_ME: {
+            result = SKConversationLocalLiveStatusRingingForMe;
+            break;
+        }
+            
+        case Conversation::STARTING: {
+            result = SKConversationLocalLiveStatusStarting;
+            break;
+        }
+            
+        case Conversation::TRANSFERRING: {
+            result = SKConversationLocalLiveStatusTransferring;
+            break;
+        }
+            
+        default: {
+            break;
+        }
+    }
+    
+    return result;
+}
+
 @end
