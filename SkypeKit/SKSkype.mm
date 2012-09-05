@@ -88,13 +88,24 @@
     [self skype]->stop();
 }
 
-- (SKAccount*) accountForName: (NSString*) name delegate:(id<SKAccountDelegate>)accountDelegate{
+- (SKAccount*) accountForName: (NSString*) name{
     SKAccount* result = nil;
     
     AccountRef account;
     if (self.skype->GetAccount([name cStringUsingEncoding:NSUTF8StringEncoding], account)) {
         result = [SKObject resolve:account];
     }; 
+    
+    return result;
+}
+
+- (SKContact *)contactWithIdentity:(NSString *)identity {
+    SKContact* result = nil;
+    
+    ContactRef contact;
+    if (self.skype->GetContact([identity UTF8String], contact)) {
+        result = [SKObject resolve:contact];
+    }
     
     return result;
 }

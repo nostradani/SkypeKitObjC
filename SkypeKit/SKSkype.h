@@ -50,7 +50,8 @@
 - (void) start;
 - (void) stop;
 
-- (SKAccount*) accountForName: (NSString*) name delegate:(id<SKAccountDelegate>) delegate;
+- (SKAccount*) accountForName: (NSString*) name;
+- (SKContact*) contactWithIdentity: (NSString*) identity;
 
 - (SKContactGroup*) hardwiredContactGroup: (SKContactGroupType) type;
 
