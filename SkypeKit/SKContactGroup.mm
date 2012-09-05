@@ -20,13 +20,17 @@
 - (BOOL) setCoreDisplayName:(NSString*) aDisplayName;
 
 - (NSString*) coreCustomGroupId;
+- (SKContactGroupType) coreType;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* customGroupId;
+@property (nonatomic, assign, readwrite) SKContactGroupType type;
 
 @end
 
 @implementation SKContactGroup
+
+@synthesize delegate = _delegate;
 
 - (NSArray*) contacts {
     
@@ -35,7 +39,7 @@
     
     NSUInteger size = contactList.size();
     
-    NSMutableArray* contacts = [NSMutableArray arrayWithCapacity:size]; 
+    NSMutableArray* contacts = [NSMutableArray arrayWithCapacity:size];
     
     for (NSUInteger i=0; i<size; i++) {
         SKContact* contact = [SKObject resolve:contactList[i]->ref()];
@@ -57,7 +61,19 @@
         [self markPropertyAsCached:@"displayName"];
         result = [NSString stringWithUTF8String:name];
     }
-        
+    
+    return result;
+}
+
+- (SKContactGroupType) coreType {
+    ContactGroup::TYPE type;
+    SKContactGroupType result = SKContactGroupTypeUndefined;
+    
+    if (self.coreContactGroup->GetPropType(type)) {
+        [self markPropertyAsCached:@"type"];
+        result = [SKContactGroup decodeType:type];
+    }
+    
     return result;
 }
 
@@ -96,6 +112,19 @@
             self->_displayName = [aDisplayName copy];
         }
         
+    }
+}
+
+- (SKContactGroupType)type {
+    if (![self isPropertyCached:@"type"]) {
+        self->_type = [self coreType];
+    }
+    return self->_type;
+}
+
+- (void)setType:(SKContactGroupType)type {
+    if (self->_type != type) {
+        self->_type = type;
     }
 }
 
