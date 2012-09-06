@@ -92,7 +92,7 @@
 }
 
 - (SKParticipantTextStatus)textStatus {
-    if (![self isPropertyCached:@"soundLevel"]) {
+    if (![self isPropertyCached:@"textStatus"]) {
         self->_textStatus = [self coreTextStatus];
     }
     
@@ -120,6 +120,11 @@
             
         case Participant::P_IDENTITY: {
             self.identity = [self coreIdentity];
+            break;
+        }
+            
+        case Participant::P_TEXT_STATUS: {
+            self.textStatus = [self coreTextStatus];
             break;
         }
             
