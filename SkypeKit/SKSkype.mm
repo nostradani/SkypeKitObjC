@@ -159,6 +159,22 @@
     return result;
 }
 
+- (NSArray*) conversations {
+    ConversationRefs conversationRefs;
+    NSMutableArray* result = nil;
+    if (self.skype->GetConversationList(conversationRefs)) {
+        NSUInteger size = conversationRefs.size();
+        result = [NSMutableArray arrayWithCapacity:size];
+        
+        for (NSUInteger i=0; i<size; i++) {
+            SKConversation* conversation = [SKConversation resolve:conversationRefs[i]];
+            [result addObject:conversation];
+        }
+    }
+    
+    return result;
+}
+
 - (NSArray*) customContactGroups {
     ContactGroupRefs groupRefs;
     NSMutableArray* result = nil;

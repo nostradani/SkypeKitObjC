@@ -57,6 +57,8 @@
 
 - (NSArray*) customContactGroups;
 
+- (NSArray*) conversations;
+
 - (SKConversation*) conversationWithParticipants:(NSSet*) participants createIfNonExisting:(BOOL) create igonoreIfBookmarkedOrNamed:(BOOL) bookmarked;
 - (SKConversation*) conversationWithIdentity:(NSString*) identity;
 - (SKContactSearch*) basicContactSearch:(NSString*) searchTerm;
