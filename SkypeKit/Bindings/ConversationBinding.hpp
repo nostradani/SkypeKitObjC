@@ -17,6 +17,7 @@ public:
     ~ConversationImp();
     
     virtual void OnChange(int prop);
+    virtual void OnMessage(const MessageRef &message);
     
 protected:
     virtual SEReference coreRef();
@@ -29,6 +30,8 @@ protected:
 
 + (SKConversationLocalLiveStatus) decodeLocalLiveStatus:(Conversation::LOCAL_LIVESTATUS) status;
 + (Conversation::LOCAL_LIVESTATUS) encodeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
+
+- (void)onMessage:(const Message::Ref&)message;
 
 @property (nonatomic, readonly) ConversationImp* coreConversation;
 

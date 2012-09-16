@@ -7,6 +7,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
 #import <Foundation/NSSet.h>
+#import <Foundation/NSDate.h>
 
 #import "SKMessage.h"
 #import "SKParticipant.h"
@@ -72,6 +73,45 @@
 - (NSSet *)participants {
     return [self participantsForFilter:SKParticipantFilterAll];
 }
+
+- (NSArray *) lastMessages {
+    return [self lastMessagesSinceDate:[NSDate dateWithTimeIntervalSince1970:0]];
+}
+
+- (NSArray *) lastMessagesSinceDate:(NSDate *)date {
+    
+    MessageRefs unconsumedMessageRefs;
+    MessageRefs consumedMessageRefs;
+    NSMutableArray* result = nil;
+    NSMutableArray* unconsumed = nil;
+
+    if (self.coreConversation->GetLastMessages(consumedMessageRefs, unconsumedMessageRefs, [date timeIntervalSince1970])) {
+        NSUInteger size = consumedMessageRefs.size();
+        result = [NSMutableArray arrayWithCapacity:size];
+
+        for (NSUInteger i=0; i<size; i++) {
+            SKMessage* message = [SKMessage resolve:consumedMessageRefs[i]->ref()];
+            [result addObject:message];
+        }
+        
+        NSUInteger unconsumedSize = unconsumedMessageRefs.size();
+        unconsumed = [NSMutableArray arrayWithCapacity:unconsumedSize];
+        
+        for (NSUInteger i=0; i<unconsumedSize; i++) {
+            SKMessage* message = [SKMessage resolve:unconsumedMessageRefs[i]->ref()];
+            [unconsumed addObject:message];
+        }
+        
+        if ([unconsumed count]) {
+            [self.delegate conversation:self didReceiveMessages:unconsumed];
+        }
+        
+    }
+    
+    return result;
+
+}
+
 
 - (NSSet*) participantsForFilter:(SKParticipantFilter) filter {
     ParticipantRefs participants;

@@ -5,13 +5,18 @@
 #import "ConversationBinding.hpp"
 
 #import "SKConversation.h"
-
+#import "SKMessage.h"
+#import <Foundation/NSArray.h>
 
 ConversationImp::ConversationImp(unsigned int oid, SERootObject* root) : Conversation(oid, root), ObjectImp([SKConversation class], root){
 };
 
 void ConversationImp::OnChange(int prop) {
     [this->_objectInstance onChange:prop];
+}
+
+void ConversationImp::OnMessage(const MessageRef &message) {
+    [(SKConversation *)(this->_objectInstance) onMessage:message];
 }
 
 SEReference ConversationImp::coreRef() {
@@ -223,6 +228,11 @@ ConversationImp::~ConversationImp() {
     }
     
     return result;
+}
+
+- (void)onMessage:(const Message::Ref&)message {
+    SKMessage* aMessage = [SKObject resolve:message];
+    [self.delegate conversation:self didReceiveMessages:[NSArray arrayWithObject:aMessage]];
 }
 
 @end

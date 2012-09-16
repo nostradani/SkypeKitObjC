@@ -3,6 +3,7 @@
  */
 
 #import "SKObject.h"
+#import <Foundation/NSDate.h>
 
 @class ConversationBinding;
 @class SKMessage;
@@ -54,6 +55,7 @@ typedef enum {
 @protocol SKConversationDelegate <NSObject>
 
 - (void) conversation:(SKConversation*) conversation didChangeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
+- (void) conversation:(SKConversation*) conversation didReceiveMessages:(NSArray *) messages;
 
 @end
 
@@ -77,6 +79,9 @@ typedef enum {
 - (BOOL) leaveLiveSession;
 
 - (NSSet*) participants;
+
+- (NSArray *) lastMessages;
+- (NSArray *) lastMessagesSinceDate:(NSDate *)date;
 
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML;
 - (BOOL) postFiles:(NSArray*) fileNames text:(NSString*) text;
