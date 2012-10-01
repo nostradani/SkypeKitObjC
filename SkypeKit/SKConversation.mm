@@ -21,11 +21,13 @@
 - (NSString*) coreDisplayName;
 - (NSString*) coreIdentity;
 - (SKConversationType) type;
+- (SKConversationMyStatus) myStatus;
 - (SKConversationLocalLiveStatus) coreLocalLiveStatus;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* identity;
 @property (nonatomic, assign, readwrite) SKConversationType type;
+@property (nonatomic, assign, readwrite) SKConversationMyStatus myStatus;
 @property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
 
 @end
@@ -65,6 +67,18 @@
     if (self.coreConversation->GetPropLocalLivestatus(status)) {
         [self markPropertyAsCached:@"localLiveStatus"];
         result = [SKConversation decodeLocalLiveStatus:status];
+    }
+    
+    return result;
+}
+
+- (SKConversationMyStatus)coreMyStatus {
+    Conversation::MY_STATUS status;
+    SKConversationMyStatus result = SKConversationMyStatusUndefined;
+    
+    if (self.coreConversation->GetPropMyStatus(status)) {
+        [self markPropertyAsCached:@"myStatus"];
+        result = [SKConversation decodeMyStatus:status];
     }
     
     return result;
@@ -246,6 +260,20 @@
     }
 }
 
+- (SKConversationMyStatus)myStatus {
+    if (![self isPropertyCached:@"myStatus"]) {
+        self->_myStatus = [self coreMyStatus];
+    }
+    
+    return self->_myStatus;
+}
+
+- (void)setMyStatus:(SKConversationMyStatus)myStatus {
+    if (self->_myStatus != myStatus) {
+        self->_myStatus = myStatus;
+    }
+}
+
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML {
     SKMessage* result = nil;
     MessageRef message;
@@ -304,6 +332,13 @@
             SKConversationLocalLiveStatus status = [self coreLocalLiveStatus];
             self.localLiveStatus = status;
             [self.delegate conversation:self didChangeLocalLiveStatus:status];
+            break;
+        }
+            
+        case Conversation::P_MY_STATUS: {
+            SKConversationMyStatus status = [self coreMyStatus];
+            self.myStatus = status;
+            [self.delegate conversation:self didChangeMyStatus:status];
             break;
         }
             

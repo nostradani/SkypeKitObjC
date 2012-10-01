@@ -31,6 +31,9 @@ protected:
 + (SKConversationLocalLiveStatus) decodeLocalLiveStatus:(Conversation::LOCAL_LIVESTATUS) status;
 + (Conversation::LOCAL_LIVESTATUS) encodeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
 
++ (SKConversationMyStatus)decodeMyStatus:(Conversation::MY_STATUS)status;
++ (Conversation::MY_STATUS) encodeMyStatus:(SKConversationMyStatus) status;
+
 - (void)onMessage:(const Message::Ref&)message;
 
 @property (nonatomic, readonly) ConversationImp* coreConversation;

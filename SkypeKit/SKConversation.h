@@ -52,6 +52,20 @@ typedef enum {
     SKConversationLocalLiveStatusTransferring,
 } SKConversationLocalLiveStatus;
 
+typedef enum {
+    SKConversationMyStatusUndefined,
+    SKConversationMyStatusConnecting,
+    SKConversationMyStatusDownloadingMessages,
+    SKConversationMyStatusRetryConnecting,
+    SKConversationMyStatusQueuedToEnter,
+    SKConversationMyStatusApplicant,
+    SKConversationMyStatusApplicationDenied,
+    SKConversationMyStatusInvalidAccessToken,
+    SKConversationMyStatusConsumer,
+    SKConversationMyStatusRetiredForcefully,
+    SKConversationMyStatusRetiredVoluntarily,
+} SKConversationMyStatus;
+
 @protocol SKConversationDelegate <NSObject>
 
 - (void) conversation:(SKConversation*) conversation didChangeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
@@ -64,6 +78,7 @@ typedef enum {
     NSString* _identity;
     SKConversationType _type;
     SKConversationLocalLiveStatus _localLiveStatus;
+    SKConversationMyStatus _myStatus;
     id<SKConversationDelegate> _delegate;
 }
 
@@ -71,6 +86,7 @@ typedef enum {
 @property (nonatomic, readonly) NSString* displayName;
 @property (nonatomic, readonly) NSString* identity;
 @property (nonatomic, readonly) SKConversationType type;
+@property (nonatomic, readonly) SKConversationMyStatus myStatus;
 @property (nonatomic, readonly) SKConversationLocalLiveStatus localLiveStatus;
 
 - (BOOL) ringOthers;

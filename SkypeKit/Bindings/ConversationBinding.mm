@@ -230,6 +230,130 @@ ConversationImp::~ConversationImp() {
     return result;
 }
 
++ (Conversation::MY_STATUS) encodeMyStatus:(SKConversationMyStatus)status {
+    Conversation::MY_STATUS result = Conversation::CONNECTING;
+    
+    switch (status) {
+        case SKConversationMyStatusConnecting: {
+            result = Conversation::CONNECTING;
+            break;
+        }
+            
+        case SKConversationMyStatusRetryConnecting: {
+            result = Conversation::RETRY_CONNECTING;
+            break;
+        }
+            
+        case SKConversationMyStatusDownloadingMessages: {
+            result = Conversation::DOWNLOADING_MESSAGES;
+            break;
+        }
+            
+        case SKConversationMyStatusQueuedToEnter: {
+            result = Conversation::QUEUED_TO_ENTER;
+            break;
+        }
+            
+        case SKConversationMyStatusApplicant: {
+            result = Conversation::APPLICANT;
+            break;
+        }
+            
+        case SKConversationMyStatusApplicationDenied: {
+            result = Conversation::APPLICATION_DENIED;
+            break;
+        }
+            
+        case SKConversationMyStatusInvalidAccessToken: {
+            result = Conversation::INVALID_ACCESS_TOKEN;
+            break;
+        }
+            
+        case SKConversationMyStatusConsumer: {
+            result = Conversation::CONSUMER;
+            break;
+        }
+            
+        case SKConversationMyStatusRetiredForcefully: {
+            result = Conversation::RETIRED_FORCEFULLY;
+            break;
+        }
+            
+        case SKConversationMyStatusRetiredVoluntarily: {
+            result = Conversation::RETIRED_VOLUNTARILY;
+            break;
+        }
+                        
+        default: {
+            break;
+        }
+    }
+    
+    return result;
+}
+
++ (SKConversationMyStatus)decodeMyStatus:(Conversation::MY_STATUS)status {
+    SKConversationMyStatus result = SKConversationMyStatusUndefined;
+    
+    switch (status) {
+        case Conversation::CONNECTING: {
+            result = SKConversationMyStatusConnecting;
+            break;
+        }
+            
+        case Conversation::RETRY_CONNECTING: {
+            result = SKConversationMyStatusRetryConnecting;
+            break;
+        }
+            
+        case Conversation::DOWNLOADING_MESSAGES: {
+            result = SKConversationMyStatusDownloadingMessages;
+            break;
+        }
+            
+        case Conversation::QUEUED_TO_ENTER: {
+            result = SKConversationMyStatusQueuedToEnter;
+            break;
+        }
+            
+        case Conversation::APPLICANT: {
+            result = SKConversationMyStatusApplicant;
+            break;
+        }
+            
+        case Conversation::APPLICATION_DENIED: {
+            result = SKConversationMyStatusApplicationDenied;
+            break;
+        }
+            
+        case Conversation::INVALID_ACCESS_TOKEN: {
+            result = SKConversationMyStatusInvalidAccessToken;
+            break;
+        }
+            
+        case Conversation::CONSUMER: {
+            result = SKConversationMyStatusConsumer;
+            break;
+        }
+            
+        case Conversation::RETIRED_FORCEFULLY: {
+            result = SKConversationMyStatusRetiredForcefully;
+            break;
+        }
+            
+        case Conversation::RETIRED_VOLUNTARILY: {
+            result = SKConversationMyStatusRetiredVoluntarily;
+            break;
+        }
+                        
+        default: {
+            break;
+        }
+    }
+    
+    return result;
+}
+
 - (void)onMessage:(const Message::Ref&)message {
     SKMessage* aMessage = [SKObject resolve:message];
     [self.delegate conversation:self didReceiveMessages:[NSArray arrayWithObject:aMessage]];
