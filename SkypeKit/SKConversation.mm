@@ -23,12 +23,14 @@
 - (SKConversationType) type;
 - (SKConversationMyStatus) myStatus;
 - (SKConversationLocalLiveStatus) coreLocalLiveStatus;
+- (NSData*) corePictureData;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* identity;
 @property (nonatomic, assign, readwrite) SKConversationType type;
 @property (nonatomic, assign, readwrite) SKConversationMyStatus myStatus;
 @property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
+@property (nonatomic, retain, readwrite) NSData* pictureData;
 
 @end
 
@@ -126,6 +128,21 @@
 
 }
 
+- (NSData*) corePictureData {
+    Sid::Binary image;
+    NSData* result = nil;
+    
+    if (self.coreConversation->GetPropMetaPicture(image)) {
+        [self markPropertyAsCached:@"picture"];
+        result = [NSData dataWithBytes:image.data() length:image.size()];
+    }
+    
+    return result;
+}
+
+- (NSImage *) picture {
+    return [[[NSImage alloc] initWithData:[self pictureData]] autorelease];
+}
 
 - (NSSet*) participantsForFilter:(SKParticipantFilter) filter {
     ParticipantRefs participants;
@@ -274,6 +291,22 @@
     }
 }
 
+- (NSData *)pictureData {
+    if (![self isPropertyCached:@"pictureData"]) {
+        [self->_pictureData release];
+        self->_pictureData = [[self corePictureData] retain];
+    }
+    
+    return self->_pictureData;
+}
+
+- (void)setPictureData:(NSData *) aPictureData {
+    if (self->_pictureData != aPictureData) {
+        [self->_pictureData release];
+        self->_pictureData = [aPictureData retain];
+    }
+}
+
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML {
     SKMessage* result = nil;
     MessageRef message;
@@ -342,6 +375,11 @@
             break;
         }
             
+        case Conversation::P_META_PICTURE: {
+            self.pictureData = [self pictureData];
+            break;
+        }
+
         default:
             break;
     }
@@ -350,7 +388,8 @@
 - (void)dealloc {
     [self->_displayName release];
     [self->_identity release];
-    
+    [self->_pictureData release];
+
     [super dealloc];
 }
 

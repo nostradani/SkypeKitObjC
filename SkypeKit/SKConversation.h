@@ -4,6 +4,7 @@
 
 #import "SKObject.h"
 #import <Foundation/NSDate.h>
+#import <AppKit/NSImage.h>
 
 @class ConversationBinding;
 @class SKMessage;
@@ -79,6 +80,7 @@ typedef enum {
     SKConversationType _type;
     SKConversationLocalLiveStatus _localLiveStatus;
     SKConversationMyStatus _myStatus;
+    NSData* _pictureData;
     id<SKConversationDelegate> _delegate;
 }
 
@@ -86,8 +88,9 @@ typedef enum {
 @property (nonatomic, readonly) NSString* displayName;
 @property (nonatomic, readonly) NSString* identity;
 @property (nonatomic, readonly) SKConversationType type;
-@property (nonatomic, readonly) SKConversationMyStatus myStatus;
 @property (nonatomic, readonly) SKConversationLocalLiveStatus localLiveStatus;
+@property (nonatomic, readonly) SKConversationMyStatus myStatus;
+@property (nonatomic, readonly) NSData* pictureData;
 
 - (BOOL) ringOthers;
 
@@ -98,6 +101,8 @@ typedef enum {
 
 - (NSArray *) lastMessages;
 - (NSArray *) lastMessagesSinceDate:(NSDate *)date;
+
+- (NSImage *) picture;
 
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML;
 - (BOOL) postFiles:(NSArray*) fileNames text:(NSString*) text;
