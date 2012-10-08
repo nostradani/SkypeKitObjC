@@ -23,6 +23,7 @@
 - (SKConversationType) type;
 - (SKConversationMyStatus) myStatus;
 - (SKConversationLocalLiveStatus) coreLocalLiveStatus;
+- (BOOL) coreBookmarked;
 - (NSData*) corePictureData;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
@@ -30,6 +31,7 @@
 @property (nonatomic, assign, readwrite) SKConversationType type;
 @property (nonatomic, assign, readwrite) SKConversationMyStatus myStatus;
 @property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
+@property (nonatomic, assign, readwrite) BOOL bookmarked;
 @property (nonatomic, retain, readwrite) NSData* pictureData;
 
 @end
@@ -62,6 +64,18 @@
     return result;
 }
 
+- (SKConversationMyStatus)coreMyStatus {
+    Conversation::MY_STATUS status;
+    SKConversationMyStatus result = SKConversationMyStatusUndefined;
+    
+    if (self.coreConversation->GetPropMyStatus(status)) {
+        [self markPropertyAsCached:@"myStatus"];
+        result = [SKConversation decodeMyStatus:status];
+    }
+    
+    return result;
+}
+
 - (SKConversationLocalLiveStatus)coreLocalLiveStatus {
     Conversation::LOCAL_LIVESTATUS status;
     SKConversationLocalLiveStatus result = SKConversationLocalLiveStatusUndefined;
@@ -74,13 +88,11 @@
     return result;
 }
 
-- (SKConversationMyStatus)coreMyStatus {
-    Conversation::MY_STATUS status;
-    SKConversationMyStatus result = SKConversationMyStatusUndefined;
+- (bool)coreBookmarked {
+    bool result = false;
     
-    if (self.coreConversation->GetPropMyStatus(status)) {
-        [self markPropertyAsCached:@"myStatus"];
-        result = [SKConversation decodeMyStatus:status];
+    if (self.coreConversation->GetPropIsBookmarked(result)) {
+        [self markPropertyAsCached:@"bookmarked"];
     }
     
     return result;
@@ -291,6 +303,20 @@
     }
 }
 
+- (BOOL)bookmarked {
+    if (![self isPropertyCached:@"bookmarked"]) {
+        self->_bookmarked = [self coreBookmarked];
+    }
+    
+    return self->_bookmarked;
+}
+
+- (void)setBookmarked:(BOOL)bookmarked {
+    if (self->_bookmarked != bookmarked) {
+        self->_bookmarked = bookmarked;
+    }
+}
+
 - (NSData *)pictureData {
     if (![self isPropertyCached:@"pictureData"]) {
         [self->_pictureData release];
@@ -374,7 +400,12 @@
             [self.delegate conversation:self didChangeMyStatus:status];
             break;
         }
-            
+
+        case Conversation::P_IS_BOOKMARKED: {
+            self.bookmarked = [self coreBookmarked];
+            break;
+        }
+
         case Conversation::P_META_PICTURE: {
             self.pictureData = [self pictureData];
             break;

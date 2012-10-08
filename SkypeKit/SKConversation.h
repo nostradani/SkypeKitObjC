@@ -80,6 +80,7 @@ typedef enum {
     SKConversationType _type;
     SKConversationLocalLiveStatus _localLiveStatus;
     SKConversationMyStatus _myStatus;
+    BOOL _bookmarked;
     NSData* _pictureData;
     id<SKConversationDelegate> _delegate;
 }
@@ -90,6 +91,7 @@ typedef enum {
 @property (nonatomic, readonly) SKConversationType type;
 @property (nonatomic, readonly) SKConversationLocalLiveStatus localLiveStatus;
 @property (nonatomic, readonly) SKConversationMyStatus myStatus;
+@property (nonatomic, readonly) BOOL bookmarked;
 @property (nonatomic, readonly) NSData* pictureData;
 
 - (BOOL) ringOthers;
