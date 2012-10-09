@@ -24,6 +24,7 @@
 - (SKConversationMyStatus) myStatus;
 - (SKConversationLocalLiveStatus) coreLocalLiveStatus;
 - (BOOL) coreBookmarked;
+- (NSDate*) coreLastActivityDate;
 - (NSData*) corePictureData;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
@@ -32,6 +33,7 @@
 @property (nonatomic, assign, readwrite) SKConversationMyStatus myStatus;
 @property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
 @property (nonatomic, assign, readwrite) BOOL bookmarked;
+@property (nonatomic, retain, readwrite) NSDate* lastActivityDate;
 @property (nonatomic, retain, readwrite) NSData* pictureData;
 
 @end
@@ -103,7 +105,7 @@
 }
 
 - (NSArray *) lastMessages {
-    return [self lastMessagesSinceDate:[NSDate dateWithTimeIntervalSince1970:0]];
+    return [self lastMessagesSinceDate:[NSDate dateWithTimeIntervalSinceNow:-(60*60*24*7)]];
 }
 
 - (NSArray *) lastMessagesSinceDate:(NSDate *)date {
@@ -154,6 +156,18 @@
 
 - (NSImage *) picture {
     return [[[NSImage alloc] initWithData:[self pictureData]] autorelease];
+}
+
+- (NSDate*) coreLastActivityDate {
+    uint timestamp;
+    NSDate* result = nil;
+    
+    if (self.coreConversation->GetPropLastActivityTimestamp(timestamp)) {
+        [self markPropertyAsCached:@"lastActivityTimestamp"];
+        result = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    }
+    
+    return result;
 }
 
 - (NSSet*) participantsForFilter:(SKParticipantFilter) filter {
@@ -333,6 +347,22 @@
     }
 }
 
+- (NSDate *)lastActivityDate {
+    if (![self isPropertyCached:@"lastActivityDate"]) {
+        [self->_lastActivityDate release];
+        self->_lastActivityDate = [[self coreLastActivityDate] retain];
+    }
+    
+    return self->_lastActivityDate;
+}
+
+- (void)setLastActivityDate:(NSDate *)lastActivityDate {
+    if (self->_lastActivityDate != lastActivityDate) {
+        [self->_lastActivityDate release];
+        self->_lastActivityDate = [lastActivityDate retain];
+    }
+}
+
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML {
     SKMessage* result = nil;
     MessageRef message;
@@ -405,9 +435,14 @@
             self.bookmarked = [self coreBookmarked];
             break;
         }
+            
+        case Conversation::P_LAST_ACTIVITY_TIMESTAMP: {
+            self.lastActivityDate = [self coreLastActivityDate];
+            break;
+        }
 
         case Conversation::P_META_PICTURE: {
-            self.pictureData = [self pictureData];
+            self.pictureData = [self corePictureData];
             break;
         }
 

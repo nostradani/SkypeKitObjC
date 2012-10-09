@@ -81,6 +81,7 @@ typedef enum {
     SKConversationLocalLiveStatus _localLiveStatus;
     SKConversationMyStatus _myStatus;
     BOOL _bookmarked;
+    NSDate* _lastActivityDate;
     NSData* _pictureData;
     id<SKConversationDelegate> _delegate;
 }
@@ -92,6 +93,7 @@ typedef enum {
 @property (nonatomic, readonly) SKConversationLocalLiveStatus localLiveStatus;
 @property (nonatomic, readonly) SKConversationMyStatus myStatus;
 @property (nonatomic, readonly) BOOL bookmarked;
+@property (nonatomic, readonly) NSDate *lastActivityDate;
 @property (nonatomic, readonly) NSData* pictureData;
 
 - (BOOL) ringOthers;
