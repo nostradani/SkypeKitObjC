@@ -125,6 +125,7 @@
             
         case Participant::P_TEXT_STATUS: {
             self.textStatus = [self coreTextStatus];
+            [self.delegate participantUpdatedTextStatus:self];
             break;
         }
             
