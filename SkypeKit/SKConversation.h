@@ -71,6 +71,7 @@ typedef enum {
 
 - (void) conversation:(SKConversation*) conversation didChangeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
 - (void) conversation:(SKConversation*) conversation didReceiveMessages:(NSArray *) messages;
+- (void) didUpdateMetaPropertiesForConversation:(SKConversation*) conversation;
 
 @end
 
@@ -105,6 +106,8 @@ typedef enum {
 
 - (NSArray *) lastMessages;
 - (NSArray *) lastMessagesSinceDate:(NSDate *)date;
+- (NSArray *) unconsumedMessages;
+- (NSArray *) unconsumedMessagesSinceDate:(NSDate *)date;
 
 - (NSImage *) picture;
 

@@ -114,11 +114,11 @@
     MessageRefs consumedMessageRefs;
     NSMutableArray* result = nil;
     NSMutableArray* unconsumed = nil;
-
+    
     if (self.coreConversation->GetLastMessages(consumedMessageRefs, unconsumedMessageRefs, [date timeIntervalSince1970])) {
         NSUInteger size = consumedMessageRefs.size();
         result = [NSMutableArray arrayWithCapacity:size];
-
+        
         for (NSUInteger i=0; i<size; i++) {
             SKMessage* message = [SKMessage resolve:consumedMessageRefs[i]->ref()];
             [result addObject:message];
@@ -139,7 +139,32 @@
     }
     
     return result;
+    
+}
 
+- (NSArray *) unconsumedMessages {
+    return [self unconsumedMessagesSinceDate:[NSDate dateWithTimeIntervalSinceNow:-(60*60*24*7)]];
+}
+
+- (NSArray *) unconsumedMessagesSinceDate:(NSDate *)date {
+    
+    MessageRefs unconsumedMessageRefs;
+    MessageRefs consumedMessageRefs;
+    NSMutableArray* result = nil;
+    
+    if (self.coreConversation->GetLastMessages(consumedMessageRefs, unconsumedMessageRefs, [date timeIntervalSince1970])) {
+        NSUInteger unconsumedSize = unconsumedMessageRefs.size();
+        result = [NSMutableArray arrayWithCapacity:unconsumedSize];
+        
+        for (NSUInteger i=0; i<unconsumedSize; i++) {
+            SKMessage* message = [SKMessage resolve:unconsumedMessageRefs[i]->ref()];
+            [result addObject:message];
+        }
+        
+    }
+    
+    return result;
+    
 }
 
 - (NSData*) corePictureData {
@@ -414,6 +439,7 @@
             
         case Conversation::P_DISPLAYNAME: {
             self.displayName = [self coreDisplayName];
+            [self.delegate didUpdateMetaPropertiesForConversation:self];
             break;
         }
             
@@ -443,6 +469,7 @@
 
         case Conversation::P_META_PICTURE: {
             self.pictureData = [self corePictureData];
+            [self.delegate didUpdateMetaPropertiesForConversation:self];
             break;
         }
 
