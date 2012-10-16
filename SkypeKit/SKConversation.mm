@@ -42,6 +42,10 @@
 
 @synthesize delegate = _delegate;
 
+- (NSString *)description {
+    return [self displayName];
+}
+
 - (NSString*) coreDisplayName {
     Sid::String name;
     NSString* result = nil;

@@ -45,7 +45,7 @@
 + (void)load {
     @autoreleasepool {
         NSTask* task = [[NSTask alloc] init];
-        NSString* exe = [NSString stringWithFormat:@"%@/SkypeKit.framework/Resources/mac-x86-skypekit",[[NSFileManager defaultManager] currentDirectoryPath]];
+        NSString* exe = [NSString stringWithFormat:@"%@/Contents/Frameworks/SkypeKit.framework/Resources/mac-x86-skypekit", [[NSBundle mainBundle] bundlePath]];
         [task setLaunchPath:exe];
         [task launch];
         [task release];
