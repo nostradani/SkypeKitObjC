@@ -45,7 +45,7 @@
 + (void)load {
     @autoreleasepool {
         NSTask* task = [[NSTask alloc] init];
-        NSString* exe = [NSString stringWithFormat:@"%@/SkypeKit.framework/Resources/mac-x86-skypekit",[[NSFileManager defaultManager] currentDirectoryPath]];
+        NSString* exe = [NSString stringWithFormat:@"%@/Contents/Frameworks/SkypeKit.framework/Resources/mac-x86-skypekit", [[NSBundle mainBundle] bundlePath]];
         [task setLaunchPath:exe];
         [task launch];
         [task release];
@@ -156,6 +156,22 @@
     if (self.skype->GetHardwiredContactGroup(groupType, group)) {
         result = [SKObject resolve:group];
     }
+    return result;
+}
+
+- (NSArray*) conversations {
+    ConversationRefs conversationRefs;
+    NSMutableArray* result = nil;
+    if (self.skype->GetConversationList(conversationRefs)) {
+        NSUInteger size = conversationRefs.size();
+        result = [NSMutableArray arrayWithCapacity:size];
+        
+        for (NSUInteger i=0; i<size; i++) {
+            SKConversation* conversation = [SKConversation resolve:conversationRefs[i]];
+            [result addObject:conversation];
+        }
+    }
+    
     return result;
 }
 

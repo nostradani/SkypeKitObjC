@@ -3,6 +3,8 @@
  */
 
 #import "SKObject.h"
+#import <Foundation/NSDate.h>
+#import <AppKit/NSImage.h>
 
 @class ConversationBinding;
 @class SKMessage;
@@ -51,9 +53,25 @@ typedef enum {
     SKConversationLocalLiveStatusTransferring,
 } SKConversationLocalLiveStatus;
 
+typedef enum {
+    SKConversationMyStatusUndefined,
+    SKConversationMyStatusConnecting,
+    SKConversationMyStatusDownloadingMessages,
+    SKConversationMyStatusRetryConnecting,
+    SKConversationMyStatusQueuedToEnter,
+    SKConversationMyStatusApplicant,
+    SKConversationMyStatusApplicationDenied,
+    SKConversationMyStatusInvalidAccessToken,
+    SKConversationMyStatusConsumer,
+    SKConversationMyStatusRetiredForcefully,
+    SKConversationMyStatusRetiredVoluntarily,
+} SKConversationMyStatus;
+
 @protocol SKConversationDelegate <NSObject>
 
 - (void) conversation:(SKConversation*) conversation didChangeLocalLiveStatus:(SKConversationLocalLiveStatus) status;
+- (void) conversation:(SKConversation*) conversation didReceiveMessages:(NSArray *) messages;
+- (void) didUpdateMetaPropertiesForConversation:(SKConversation*) conversation;
 
 @end
 
@@ -62,6 +80,10 @@ typedef enum {
     NSString* _identity;
     SKConversationType _type;
     SKConversationLocalLiveStatus _localLiveStatus;
+    SKConversationMyStatus _myStatus;
+    BOOL _bookmarked;
+    NSDate* _lastActivityDate;
+    NSData* _pictureData;
     id<SKConversationDelegate> _delegate;
 }
 
@@ -70,6 +92,10 @@ typedef enum {
 @property (nonatomic, readonly) NSString* identity;
 @property (nonatomic, readonly) SKConversationType type;
 @property (nonatomic, readonly) SKConversationLocalLiveStatus localLiveStatus;
+@property (nonatomic, readonly) SKConversationMyStatus myStatus;
+@property (nonatomic, readonly) BOOL bookmarked;
+@property (nonatomic, readonly) NSDate *lastActivityDate;
+@property (nonatomic, readonly) NSData* pictureData;
 
 - (BOOL) ringOthers;
 
@@ -77,6 +103,13 @@ typedef enum {
 - (BOOL) leaveLiveSession;
 
 - (NSSet*) participants;
+
+- (NSArray *) lastMessages;
+- (NSArray *) lastMessagesSinceDate:(NSDate *)date;
+- (NSArray *) unconsumedMessages;
+- (NSArray *) unconsumedMessagesSinceDate:(NSDate *)date;
+
+- (NSImage *) picture;
 
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML;
 - (BOOL) postFiles:(NSArray*) fileNames text:(NSString*) text;

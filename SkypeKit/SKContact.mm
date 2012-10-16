@@ -55,6 +55,10 @@
 
 @synthesize delegate = _delegate;
 
+- (NSString *)description {
+    return [self displayName];
+}
+
 - (NSString*) coreDisplayName {
     Sid::String name;
     NSString* result = nil;
@@ -576,7 +580,7 @@
         case Contact::P_AVAILABILITY: {
             SKContactAvailability availability = [self coreAvailability];
             self.availability = availability;
-            
+            NSLog(@"%@ change to %i", self, availability);
             [self.delegate contact:self didChangeAvailability:availability];
             break;
         }
