@@ -6,6 +6,7 @@
 
 #import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
+#import <Foundation/NSDate.h>
 
 #import "MessageBinding.hpp"
 #import "TransferBinding.hpp"
@@ -17,11 +18,13 @@
 - (NSString*) coreBody;
 - (NSString*) coreAuthor;
 - (NSString*) coreAuthorDisplayName;
+- (NSDate*) coreTimeStamp;
 - (SKMessageType) coreType;
 
 @property (nonatomic, copy, readwrite) NSString* body;
 @property (nonatomic, copy, readwrite) NSString* author;
 @property (nonatomic, copy, readwrite) NSString* authorDisplayName;
+@property (nonatomic, copy, readwrite) NSDate* timeStamp;
 @property (nonatomic, assign, readwrite) SKMessageType type;
 
 @end
@@ -64,6 +67,19 @@
         result = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
     }
     
+    return result;
+}
+
+- (NSDate *)coreTimeStamp {
+    uint timeStamp;
+
+    NSDate* result = nil;
+
+    if (self.coreMessage->GetPropTimestamp(timeStamp)) {
+        [self markPropertyAsCached:@"timeStamp"];
+        result = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    }
+
     return result;
 }
 
@@ -127,6 +143,22 @@
     }
 }
 
+- (NSDate *)timeStamp {
+    if (![self isPropertyCached:@"timeStamp"]) {
+        [self->_timeStamp release];
+        self->_timeStamp = [[self coreTimeStamp] copy];
+    }
+
+    return self->_timeStamp;
+}
+
+- (void)setTimeStamp:(NSDate *)timeStamp {
+    if (self->_timeStamp != timeStamp) {
+        [self->_timeStamp release];
+        self->_timeStamp = [timeStamp copy];
+    }
+}
+
 - (SKMessageType) type {
     if (![self isPropertyCached:@"type"]) {
         self->_type = [self coreType];
@@ -186,6 +218,7 @@
     [self->_body release];
     [self->_author release];
     [self->_authorDisplayName release];
+    [self->_timeStamp release];
     
     [super dealloc];
 }

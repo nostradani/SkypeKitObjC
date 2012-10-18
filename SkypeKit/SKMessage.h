@@ -7,6 +7,7 @@
 @class MessageBinding;
 @class SKContact;
 @class NSArray;
+@class NSDate;
 
 typedef enum {
     SKMessageTypeSetMetadata,
@@ -35,12 +36,14 @@ typedef enum {
     NSString* _body;
     NSString* _author;
     NSString* _authorDisplayName;
+    NSDate* _timeStamp;
     SKMessageType _type;
 }
 
 @property (nonatomic, readonly) NSString* body;
 @property (nonatomic, readonly) NSString* author;
 @property (nonatomic, readonly) NSString* authorDisplayName;
+@property (nonatomic, readonly) NSDate* timeStamp;
 @property (nonatomic, readonly) SKMessageType type;
 
 - (NSArray*) transfers;
