@@ -31,6 +31,8 @@
 - (NSArray*) coreEmails;
 - (NSString*) coreHomepage;
 - (NSString*) coreAbout;
+- (SKAccountLoginStatus) coreStatus;
+- (SKAccountLogoutReason) coreLogoutReason;
 
 - (void) setCoreAvatarData:(NSData*) avatarData;
 - (void) setCoreAvailability:(SKContactAvailability) availability;
@@ -48,6 +50,8 @@
 - (void) setCoreEmails:(NSArray*) emails;
 - (void) setCoreHomepage:(NSString*) hompage;
 - (void) setCoreAbout:(NSString*) about;
+- (void) setStatus:(SKAccountLoginStatus) status;
+- (void) setLogoutReason:(SKAccountLogoutReason) logoutReason;
 
 @end
 
@@ -65,21 +69,26 @@
 
 - (void)onChange:(int)prop {
     @autoreleasepool {
-        if (prop == Account::P_STATUS) {
-            SKAccountLoginStatus status = SKAccountLoginStatusUndefined;
-            
-            Account::STATUS LoginStatus;
-            self.coreAccount->GetPropStatus(LoginStatus);
-            
-            if (LoginStatus == Account::LOGGED_IN) {
-                status = SKAccountLoginStatusLoggedIn;
+        switch (prop) {
+            case Account::P_STATUS: {
+                self.status = [self coreStatus];
+                [self markPropertyAsCached:@"status"];
+                [self.delegate account:self didChangeLoginStatus:self.status];
+                
+                break;
             }
-            else if (LoginStatus == Account::LOGGED_OUT) {
-                status = SKAccountLoginStatusLoggedOut;
-            };
-            
-            [self.delegate account:self didChangeLoginStatus:status];
-        };
+                
+            case Account::P_LOGOUTREASON: {
+                self.logoutReason = [self coreLogoutReason];
+                [self markPropertyAsCached:@"logoutReason"];
+                
+                break;
+            }
+                
+            default: {
+                break;
+            }
+        }
     }
 }
 
@@ -90,6 +99,28 @@
     
     if (self.coreAccount->GetPropSkypename(name)) {
         result = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    }
+    
+    return result;
+}
+
+- (SKAccountLoginStatus) coreStatus {
+    Account::STATUS status;
+    SKAccountLoginStatus result = SKAccountLoginStatusUndefined;
+    
+    if (self.coreAccount->GetPropStatus(status)) {
+        result = [SKAccount decodeLoginStatus:status];
+    }
+    
+    return result;
+}
+
+- (SKAccountLogoutReason)coreLogoutReason {
+    Account::LOGOUTREASON reason;
+    SKAccountLogoutReason result = SKAccountLogoutReasonUnknown;
+    
+    if (self.coreAccount->GetPropLogoutreason(reason)) {
+        result = [SKAccount decodeLogoutReason:reason];
     }
     
     return result;
@@ -879,6 +910,36 @@
         [self setCoreBirthday:birthday];
         [self->_birthday release];
         self->_birthday = [birthday copy];
+    }
+}
+
+- (SKAccountLoginStatus)status {
+    if (![self isPropertyCached:@"status"]) {
+        self->_status = [self coreStatus];
+        [self markPropertyAsCached:@"status"];
+    }
+    
+    return self->_status;
+}
+
+- (void)setStatus:(SKAccountLoginStatus)status {
+    if (self.status != status) {
+        self->_status = status;
+    }
+}
+
+- (SKAccountLogoutReason)logoutReason {
+    if (![self isPropertyCached:@"logoutReason"]) {
+        self->_logoutReason = [self coreLogoutReason];
+        [self markPropertyAsCached:@"logoutReason"];
+    }
+    
+    return self->_logoutReason;
+}
+
+- (void)setLogoutReason:(SKAccountLogoutReason)logoutReason {
+    if (self.logoutReason != logoutReason) {
+        self->_logoutReason = logoutReason;
     }
 }
 

@@ -26,5 +26,11 @@ protected:
  
 @property (nonatomic, readonly) AccountImp* coreAccount;
 
++ (SKAccountLoginStatus) decodeLoginStatus:(Account::STATUS) status;
++ (Account::STATUS) encodeLoginStatus:(SKAccountLoginStatus) status;
+
++ (SKAccountLogoutReason) decodeLogoutReason:(Account::LOGOUTREASON) reason;
++ (Account::LOGOUTREASON) encodeLogoutReason:(SKAccountLogoutReason) reason;
+
 @end
 

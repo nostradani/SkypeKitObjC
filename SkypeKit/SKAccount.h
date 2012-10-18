@@ -10,9 +10,45 @@
 @class NSArray;
 
 typedef enum {
+    SKAccountLogoutReasonUnknown,
+    SKAccountLogoutReasonLogoutCalled,
+    SKAccountLogoutReasonHttpsProxyAuthFailed,
+    SKAccountLogoutReasonSocksProxyAuthFailed,
+    SKAccountLogoutReasonP2PConnectFailed,
+    SKAccountLogoutReasonServerConnectFailed,
+    SKAccountLogoutReasonServerOverloaded,
+    SKAccountLogoutReasonDBInUse,
+    SKAccountLogoutReasonInvalidSkypename,
+    SKAccountLogoutReasonInvalidEmail,
+    SKAccountLogoutReasonUnacceptablePassword,
+    SKAccountLogoutReasonSkypenameTaken,
+    SKAccountLogoutReasonRejectedAsUnderage,
+    SKAccountLogoutReasonNoSuchIdentity,
+    SKAccountLogoutReasonIncorrectPassword,
+    SKAccountLogoutReasonTooManyLoginAttempts,
+    SKAccountLogoutReasonPasswordHasChanged,
+    SKAccountLogoutReasonPeriodicUICUpdateFailed,
+    SKAccountLogoutReasonDBDiskFull,
+    SKAccountLogoutReasonDBIOError,
+    SKAccountLogoutReasonDBCorrupt,
+    SKAccountLogoutReasonDBFailure,
+    SKAccountLogoutReasonInvalidAppId,
+    SKAccountLogoutReasonAppIdFailure,
+    SKAccountLogoutReasonUnsupportedVersion,
+    SKAccountLogoutReasonATOBlocked,
+    SKAccountLogoutReasonRemoteLogout,
+} SKAccountLogoutReason;
+
+typedef enum {
     SKAccountLoginStatusUndefined,
+    SKAccountLoginStatusConnectingToP2P,
+    SKAccountLoginStatusConnectingToServer,
+    SKAccountLoginStatusInitializing,
+    SKAccountLoginStatusLoggingIn,
     SKAccountLoginStatusLoggedIn,
-    SKAccountLoginStatusLoggedOut
+    SKAccountLoginStatusLoggingOut,
+    SKAccountLoginStatusLoggedOut,
+    SKAccountLoginStatusLoggedOutAndPWDSaved
 } SKAccountLoginStatus;
 
 @protocol SKAccountDelegate <NSObject>
@@ -40,6 +76,8 @@ typedef enum {
     NSArray* _emails;
     NSString* _homepage;
     NSString* _about;
+    SKAccountLoginStatus _status;
+    SKAccountLogoutReason _logoutReason;
 }
 
 @property(nonatomic, assign) id<SKAccountDelegate> delegate;
@@ -47,6 +85,8 @@ typedef enum {
 @property(nonatomic, retain) NSData* avatarData;
 @property(nonatomic, assign) SKContactAvailability availability;
 @property(nonatomic, copy) NSString* moodText;
+@property(nonatomic, assign, readonly) SKAccountLoginStatus status;
+@property(nonatomic, assign, readonly) SKAccountLogoutReason logoutReason;
 
 @property (nonatomic, copy) NSString* fullName;
 @property (nonatomic, copy) NSDate* birthday;
