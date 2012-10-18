@@ -176,6 +176,17 @@
     return result;
 }
 
+- (SKContactGroup *)createCustomContactGroup {
+    ContactGroupRef group;
+    SKContactGroup* result = nil;
+    
+    if (self.skype->CreateCustomContactGroup(group)) {
+        result = [SKObject resolve:group];
+    }
+    
+    return result;
+}
+
 - (NSArray*) availableOutputDevices {
     Sid::List_String handleList;
     Sid::List_String nameList;

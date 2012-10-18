@@ -56,6 +56,7 @@
 - (SKContactGroup*) hardwiredContactGroup: (SKContactGroupType) type;
 
 - (NSArray*) customContactGroups;
+- (SKContactGroup*) createCustomContactGroup;
 
 - (SKConversation*) conversationWithParticipants:(NSSet*) participants createIfNonExisting:(BOOL) create igonoreIfBookmarkedOrNamed:(BOOL) bookmarked;
 - (SKConversation*) conversationWithIdentity:(NSString*) identity;
