@@ -46,6 +46,7 @@
 
 - (id) initWithKeyData: (NSData*) data address:(NSString*) address port:(NSUInteger)port logFile:(NSString*) filename;
 + (id) skypeWithKeyData: (NSData*) data address:(NSString*) address port:(NSUInteger)port logFile:(NSString*) filename;
++ (BOOL) startRuntime;
 
 - (void) start;
 - (void) stop;

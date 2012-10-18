@@ -10,6 +10,7 @@
 #import <Foundation/NSFileManager.h>
 #import <Foundation/NSThread.h>
 #import <Foundation/NSData.h>
+#import <Foundation/NSBundle.h>
 
 #import "SKMessage.h"
 #import "SKAccount.h"
@@ -27,6 +28,7 @@
 #import "ContactSearchBinding.hpp"
 
 #import <AppKit/NSWorkspace.h>
+#import <Foundation/NSFileHandle.h>
 
 #import <skype-embedded_2.h>
 
@@ -42,20 +44,23 @@
 
 @synthesize delegate = _delegate;
 
-+ (void)load {
++ (BOOL) startRuntime {
     @autoreleasepool {
+        NSString* path = [[NSBundle bundleForClass:self] resourcePath];
+        NSString* exe = [NSString stringWithFormat:@"%@/SkypeKitRuntimeLauncher",path];
         NSTask* task = [[NSTask alloc] init];
-        NSString* exe = [NSString stringWithFormat:@"%@/SkypeKit.framework/Resources/mac-x86-skypekit",[[NSFileManager defaultManager] currentDirectoryPath]];
+        [task setArguments:[NSArray arrayWithObject:[NSString stringWithFormat:@"%@/mac-x86-skypekit",path]]];
         [task setLaunchPath:exe];
         [task launch];
-        [task release];
-        
-        [NSThread sleepForTimeInterval:3];
+        [task waitUntilExit];
     }
+    
+    return YES;
 }
 
 - (id) initWithKeyData: (NSData*) data address:(NSString*) address port:(NSUInteger)port logFile:(NSString*) filename {
     self = [super init];
+    
     if (self) {
         self->_skype = new SkypeImp();
         self.skype->bind(self);
