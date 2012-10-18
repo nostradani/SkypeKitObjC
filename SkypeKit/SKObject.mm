@@ -65,8 +65,30 @@
 }
 
 + (id)resolve:(SEReference)reference {
-    ObjectImp* object = dynamic_cast<ObjectImp*>(reference.fetch());
-    return object->getObjectInstance();
+    
+    id result = nil;
+    SEObject* skypeObject = reference.fetch();
+    
+    if (skypeObject != NULL) {
+        ObjectImp* object = dynamic_cast<ObjectImp*>(skypeObject);
+        
+        //for some weird reason this does not always work at the first time
+        if(object == NULL) {
+            object = dynamic_cast<ObjectImp*>(skypeObject);
+        }
+        
+        if (object != NULL) {
+            result = object->getObjectInstance();
+        }
+        else {
+            printf("Dynamic casting failed for %p", skypeObject);
+        }
+    }
+    else {
+        printf("Unable to fetch skype object");
+    }
+    
+    return result;
 }
 
 - (void)bindReference:(SEReference)reference {
@@ -76,10 +98,11 @@
 }
 
 - (void)unbindReference {
-    ObjectImp* object = dynamic_cast<ObjectImp*>(self->_reference.objectRef.fetch());
-    object->unbind();
-    
-    self->_reference.objectRef = NULL;
+    if (self->_reference != nil) {
+        ObjectImp* object = dynamic_cast<ObjectImp*>(self->_reference.objectRef.fetch());
+        object->unbind();
+        self->_reference.objectRef = NULL;
+    }
 }
 
 @end
