@@ -7,6 +7,10 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
 #import <Foundation/NSSet.h>
+#import <Foundation/NSDate.h>
+#import <Foundation/NSData.h>
+
+#import <AppKit/NSImage.h>
 
 #import "SKMessage.h"
 #import "SKParticipant.h"
@@ -20,18 +24,30 @@
 - (NSString*) coreDisplayName;
 - (NSString*) coreIdentity;
 - (SKConversationType) type;
+- (SKConversationMyStatus) myStatus;
 - (SKConversationLocalLiveStatus) coreLocalLiveStatus;
+- (BOOL) coreBookmarked;
+- (NSDate*) coreLastActivityDate;
+- (NSData*) coreMetaPictureData;
 
 @property (nonatomic, copy, readwrite) NSString* displayName;
 @property (nonatomic, copy, readwrite) NSString* identity;
 @property (nonatomic, assign, readwrite) SKConversationType type;
+@property (nonatomic, assign, readwrite) SKConversationMyStatus myStatus;
 @property (nonatomic, assign, readwrite) SKConversationLocalLiveStatus localLiveStatus;
+@property (nonatomic, assign, readwrite, getter=isBookmarked) BOOL bookmarked;
+@property (nonatomic, retain, readwrite) NSDate* lastActivityDate;
+@property (nonatomic, retain, readwrite) NSData* metaPictureData;
 
 @end
 
 @implementation SKConversation
 
 @synthesize delegate = _delegate;
+
+- (NSString *)description {
+    return [self displayName];
+}
 
 - (NSString*) coreDisplayName {
     Sid::String name;
@@ -57,6 +73,18 @@
     return result;
 }
 
+- (SKConversationMyStatus) coreMyStatus {
+    Conversation::MY_STATUS status;
+    SKConversationMyStatus result = SKConversationMyStatusUndefined;
+    
+    if (self.coreConversation->GetPropMyStatus(status)) {
+        [self markPropertyAsCached:@"myStatus"];
+        result = [SKConversation decodeMyStatus:status];
+    }
+    
+    return result;
+}
+
 - (SKConversationLocalLiveStatus)coreLocalLiveStatus {
     Conversation::LOCAL_LIVESTATUS status;
     SKConversationLocalLiveStatus result = SKConversationLocalLiveStatusUndefined;
@@ -69,8 +97,87 @@
     return result;
 }
 
+- (BOOL)coreBookmarked {
+    bool result = false;
+    
+    if (self.coreConversation->GetPropIsBookmarked(result)) {
+        [self markPropertyAsCached:@"bookmarked"];
+    }
+    
+    return (BOOL)result;
+}
+
 - (NSSet *)participants {
     return [self participantsForFilter:SKParticipantFilterAll];
+}
+
+- (NSArray *) lastMessages {
+    return [self lastMessagesSinceDate:nil contextMessages:nil];
+}
+
+- (NSArray *) lastMessagesSinceDate:(NSDate *)date contextMessages:(__autoreleasing NSArray **)contextMessages{
+    MessageRefs unconsumedMessagesRef;
+    MessageRefs contextMessagesRef;
+    NSMutableArray* result = nil;
+    
+    const uint timestamp = (date == nil) ? 0 : [date timeIntervalSince1970];
+    
+    if (self.coreConversation->GetLastMessages(unconsumedMessagesRef, contextMessagesRef, timestamp)) {
+        if (contextMessages != nil) {
+            NSUInteger size = contextMessagesRef.size();
+            NSMutableArray* mutableContextMessages = [NSMutableArray arrayWithCapacity:size];
+            
+            for (NSUInteger i=0; i<size; i++) {
+                SKMessage* message = [SKMessage resolve:contextMessagesRef[i]->ref()];
+                [mutableContextMessages addObject:message];
+            }
+            
+            *contextMessages = mutableContextMessages;
+        }
+        
+        NSUInteger unconsumedSize = unconsumedMessagesRef.size();
+        result = [NSMutableArray arrayWithCapacity:unconsumedSize];
+        
+        for (NSUInteger i=0; i<unconsumedSize; i++) {
+            SKMessage* message = [SKMessage resolve:unconsumedMessagesRef[i]->ref()];
+            [result addObject:message];
+        }
+    }
+    
+    return result;
+    
+}
+
+- (NSData*) coreMetaPictureData {
+    Sid::Binary image;
+    NSData* result = nil;
+    
+    if (self.coreConversation->GetPropMetaPicture(image)) {
+        [self markPropertyAsCached:@"metaPictureData"];
+        result = [NSData dataWithBytes:image.data() length:image.size()];
+    }
+    
+    return result;
+}
+
++ (NSSet *)keyPathsForValuesAffectingMetaPicture {
+    return [NSSet setWithObjects:@"metaPictureData", nil];
+}
+
+- (NSImage *) metaPicture {
+    return [[[NSImage alloc] initWithData:[self metaPictureData]] autorelease];
+}
+
+- (NSDate*) coreLastActivityDate {
+    uint timestamp;
+    NSDate* result = nil;
+    
+    if (self.coreConversation->GetPropLastActivityTimestamp(timestamp)) {
+        [self markPropertyAsCached:@"lastActivityTimestamp"];
+        result = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    }
+    
+    return result;
 }
 
 - (NSSet*) participantsForFilter:(SKParticipantFilter) filter {
@@ -118,31 +225,12 @@
 }
 
 - (SKConversationType) coreType {
-    Conversation::TYPE aType;
+    Conversation::TYPE type;
     SKConversationType result = SKConversationTypeDialog;
     
-    if (self.coreConversation->GetPropType(aType)) {
+    if (self.coreConversation->GetPropType(type)) {
         [self markPropertyAsCached:@"type"];
-        switch (aType) {
-            case Conversation::CONFERENCE:
-                result = SKConversationTypeConference;
-                break;
-                
-            case Conversation::TERMINATED_CONFERENCE:
-                result = SKConversationTypeTerminatedConference;
-                break;
-                
-            case Conversation::LEGACY_VOICE_CONFERENCE:
-                result = SKConversationTypeLegacyVoiceConference;
-                break;
-                
-            case Conversation::LEGACY_SHAREDGROUP:
-                result = SKConversationTypeLegacySharedGroup;
-                break;
-                
-            default:
-                break;
-        }
+        result = [SKConversation decodeType:type];
     }
     
     return result;
@@ -206,6 +294,66 @@
     }
 }
 
+- (SKConversationMyStatus)myStatus {
+    if (![self isPropertyCached:@"myStatus"]) {
+        self->_myStatus = [self coreMyStatus];
+    }
+    
+    return self->_myStatus;
+}
+
+- (void)setMyStatus:(SKConversationMyStatus)myStatus {
+    if (self->_myStatus != myStatus) {
+        self->_myStatus = myStatus;
+    }
+}
+
+- (BOOL) isBookmarked {
+    if (![self isPropertyCached:@"bookmarked"]) {
+        self->_bookmarked = [self coreBookmarked];
+    }
+    
+    return self->_bookmarked;
+}
+
+- (void)setBookmarked:(BOOL)bookmarked {
+    if (self->_bookmarked != bookmarked) {
+        self->_bookmarked = bookmarked;
+    }
+}
+
+- (NSData *) metaPictureData {
+    if (![self isPropertyCached:@"metaPictureData"]) {
+        [self->_metaPictureData release];
+        self->_metaPictureData = [[self coreMetaPictureData] retain];
+    }
+    
+    return self->_metaPictureData;
+}
+
+- (void)setMetaPictureData:(NSData *) pictureData {
+    if (self->_metaPictureData != pictureData) {
+        [self->_metaPictureData release];
+        self->_metaPictureData = [pictureData retain];
+    }
+}
+
+- (NSDate *)lastActivityDate {
+    if (![self isPropertyCached:@"lastActivityDate"]) {
+        [self->_lastActivityDate release];
+        self->_lastActivityDate = [[self coreLastActivityDate] retain];
+    }
+    
+    return self->_lastActivityDate;
+}
+
+- (void)setLastActivityDate:(NSDate *)lastActivityDate {
+    if (self->_lastActivityDate != lastActivityDate) {
+        [self->_lastActivityDate release];
+        self->_lastActivityDate = [lastActivityDate retain];
+    }
+}
+
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML {
     SKMessage* result = nil;
     MessageRef message;
@@ -257,6 +405,11 @@
             
         case Conversation::P_DISPLAYNAME: {
             self.displayName = [self coreDisplayName];
+            
+            if ([self.delegate respondsToSelector:@selector(didUpdateMetaPropertiesForConversation:)]) {
+                [self.delegate conversationDidUpdateMetaProperties:self];
+            }
+            
             break;
         }
             
@@ -267,6 +420,37 @@
             break;
         }
             
+        case Conversation::P_MY_STATUS: {
+            SKConversationMyStatus status = [self coreMyStatus];
+            self.myStatus = status;
+            
+            if ([self.delegate respondsToSelector:@selector(conversation:didChangeMyStatus:)]) {
+                [self.delegate conversation:self didChangeMyStatus:status];
+            }
+            
+            break;
+        }
+
+        case Conversation::P_IS_BOOKMARKED: {
+            self.bookmarked = [self coreBookmarked];
+            break;
+        }
+            
+        case Conversation::P_LAST_ACTIVITY_TIMESTAMP: {
+            self.lastActivityDate = [self coreLastActivityDate];
+            break;
+        }
+
+        case Conversation::P_META_PICTURE: {
+            self.metaPictureData = [self coreMetaPictureData];
+            
+            if ([self.delegate respondsToSelector:@selector(didUpdateMetaPropertiesForConversation:)]) {
+                [self.delegate conversationDidUpdateMetaProperties:self];
+            }
+            
+            break;
+        }
+
         default:
             break;
     }
@@ -275,7 +459,8 @@
 - (void)dealloc {
     [self->_displayName release];
     [self->_identity release];
-    
+    [self->_metaPictureData release];
+
     [super dealloc];
 }
 

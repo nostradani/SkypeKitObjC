@@ -164,6 +164,29 @@
     return result;
 }
 
+- (NSArray*) conversations {
+    return [self conversationsWithListType:SKConversationListTypeAllConversations];
+}
+
+- (NSArray*) conversationsWithListType:(SKConversationListType) listType {
+    ConversationRefs conversationRefs;
+    NSMutableArray* result = nil;
+    
+    Conversation::LIST_TYPE type = [SKConversation encodeListType:listType];
+    
+    if (self.skype->GetConversationList(conversationRefs, type)) {
+        NSUInteger size = conversationRefs.size();
+        result = [NSMutableArray arrayWithCapacity:size];
+        
+        for (NSUInteger i=0; i<size; i++) {
+            SKConversation* conversation = [SKConversation resolve:conversationRefs[i]];
+            [result addObject:conversation];
+        }
+    }
+    
+    return result;
+}
+
 - (NSArray*) customContactGroups {
     ContactGroupRefs groupRefs;
     NSMutableArray* result = nil;

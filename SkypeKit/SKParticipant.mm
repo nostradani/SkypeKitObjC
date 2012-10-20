@@ -124,7 +124,9 @@
         }
             
         case Participant::P_TEXT_STATUS: {
-            self.textStatus = [self coreTextStatus];
+            SKParticipantTextStatus status = [self coreTextStatus];
+            self.textStatus = status;
+            [self.delegate participant:self didUpdateTextStatus:status];
             break;
         }
             
