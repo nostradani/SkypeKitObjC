@@ -71,8 +71,12 @@
         self->_keyBuffer[size] = 0;
         
         self.skype->set_dispatch_all();
-        self.skype->init(self->_keyBuffer, [address cStringUsingEncoding:NSUTF8StringEncoding], (uint)port, [filename cStringUsingEncoding:NSUTF8StringEncoding]);
-    }
+        TransportInterface::Status status = self.skype->init(self->_keyBuffer, [address cStringUsingEncoding:NSUTF8StringEncoding], (uint)port, [filename cStringUsingEncoding:NSUTF8StringEncoding]);
+        
+        if (status != TransportInterface::OK) {
+            self = nil;
+        }
+    }    
     
     return self;
 }

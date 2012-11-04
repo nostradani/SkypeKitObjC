@@ -111,6 +111,17 @@
     return result;
 }
 
+- (SKConversation *)conversation {
+    ConversationRef conversation;
+    SKConversation* result = nil;
+    
+    if (self.coreParticipant->GetPropConvoId(conversation)) {
+        result = [SKObject resolve:conversation];
+    }
+    
+    return result;
+}
+
 - (void)onChange:(int)prop {
     switch (prop) {
         case Participant::P_SOUND_LEVEL: {

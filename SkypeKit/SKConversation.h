@@ -2,7 +2,7 @@
  * Copyright (c) 2012 Daniel Muhra. All rights reserved.
  */
 
-#import "SKObject.h"
+#import "SKParticipant.h"
 
 @class ConversationBinding;
 @class SKMessage;
@@ -107,6 +107,8 @@ typedef enum {
 
 - (BOOL) joinLiveSession;
 - (BOOL) leaveLiveSession;
+
+- (BOOL) setMyTextStatus:(SKParticipantTextStatus) textStatus;
 
 - (NSSet*) participants;
 

@@ -391,6 +391,12 @@
     return self.coreConversation->JoinLiveSession();
 }
 
+- (BOOL) setMyTextStatus:(SKParticipantTextStatus)textStatus {
+    Participant::TEXT_STATUS status = [SKParticipant encodeTextStatus:textStatus];
+    
+    return self.coreConversation->SetMyTextStatusTo(status);
+}
+
 - (void)onChange:(int)prop {
     switch (prop) {
         case Conversation::P_IDENTITY: {

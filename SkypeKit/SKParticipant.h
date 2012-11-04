@@ -7,6 +7,7 @@
 @class ParticipantBinding;
 @class SKContact;
 @class SKParticipant;
+@class SKConversation;
 
 typedef enum {
     SKParticipantTextStatusTextUnknown,
@@ -37,6 +38,8 @@ typedef enum {
 @property (nonatomic, readonly) SKContact* contact;
 
 @property (nonatomic, assign) id <SKParticipantDelegate> delegate;
+
+- (SKConversation*) conversation;
 
 - (BOOL) ring;
 - (BOOL) ringOnLine:(NSString*) line videoEnabled:(BOOL) videoEnabled maxRedial:(NSUInteger) maxRedial retryPeriod:(NSUInteger) redialPeriod voicemail:(BOOL) voiceMail;
