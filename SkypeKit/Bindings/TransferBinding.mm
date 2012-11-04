@@ -69,6 +69,11 @@ TransferImp::~TransferImp() {
             result = SKTransferStatusFailed;
             break;
             
+            
+        case Transfer::PLACEHOLDER:
+            result = SKTransferStatusPlaceholder;
+            break;
+            
         case Transfer::OFFER_FROM_OTHER_INSTANCE:
             result = SKTransferStatusOfferFromOtherInstance;
             break;
@@ -135,6 +140,124 @@ TransferImp::~TransferImp() {
         case SKTransferStatusCancelledByRemote:
             result = Transfer::CANCELLED_BY_REMOTE;
             break;
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
++ (SKTransferFailureReason)decodeFailureReason:(Transfer::FAILUREREASON)reason {
+    SKTransferFailureReason result = SKTransferFailureReasonUnknown;
+    
+    switch (reason) {
+        case Transfer::FAILED_READ: {
+            result = SKTransferFailureReasonFailedRead;
+            break;
+        }
+            
+        case Transfer::FAILED_REMOTE_READ: {
+            result = SKTransferFailureReasonFailedRemoteRead;
+            break;
+        }
+            
+        case Transfer::FAILED_REMOTE_WRITE: {
+            result = SKTransferFailureReasonFailedRemoteWrite;
+            break;
+        }
+            
+        case Transfer::FAILED_WRITE: {
+            result = SKTransferFailureReasonFailedWrite;
+            break;
+        }
+        case Transfer::PLACEHOLDER_TIMEOUT: {
+            result = SKTransferFailureReasonPlaceholderTimeout;
+            break;
+        }
+        case Transfer::REMOTE_DOES_NOT_SUPPORT_FT: {
+            result = SKTransferFailureReasonRemoteDoesNotSupportFt;
+            break;
+        }
+            
+        case Transfer::REMOTELY_CANCELLED: {
+            result = SKTransferFailureReasonRemotelyCancelled;
+            break;
+        }
+            
+        case Transfer::REMOTE_OFFLINE_FOR_TOO_LONG: {
+            result = SKTransferFailureReasonRemoteOfflineForTooLong;
+            break;
+        }
+            
+        case Transfer::SENDER_NOT_AUTHORISED: {
+            result = SKTransferFailureReasonSenderNotAuthorized;
+            break;
+        }
+            
+        case Transfer::TOO_MANY_PARALLEL: {
+            result = SKTransferFailureReasonTooManyParallel;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
++ (Transfer::FAILUREREASON)encodeFailureReason:(SKTransferFailureReason)reason {
+    Transfer::FAILUREREASON result = Transfer::SENDER_NOT_AUTHORISED;
+    
+    switch (reason) {
+        case SKTransferFailureReasonFailedRead: {
+            result = Transfer::FAILED_READ;
+            break;
+        }
+            
+        case SKTransferFailureReasonFailedRemoteRead: {
+            result = Transfer::FAILED_REMOTE_READ;
+            break;
+        }
+            
+        case SKTransferFailureReasonFailedRemoteWrite: {
+            result = Transfer::FAILED_REMOTE_WRITE;
+            break;
+        }
+            
+        case SKTransferFailureReasonFailedWrite: {
+            result = Transfer::FAILED_WRITE;
+            break;
+        }
+        case SKTransferFailureReasonPlaceholderTimeout: {
+            result = Transfer::PLACEHOLDER_TIMEOUT;
+            break;
+        }
+        case SKTransferFailureReasonRemoteDoesNotSupportFt: {
+            result = Transfer::REMOTE_DOES_NOT_SUPPORT_FT;
+            break;
+        }
+            
+        case SKTransferFailureReasonRemotelyCancelled: {
+            result = Transfer::REMOTELY_CANCELLED;
+            break;
+        }
+            
+        case SKTransferFailureReasonRemoteOfflineForTooLong: {
+            result = Transfer::REMOTE_OFFLINE_FOR_TOO_LONG;
+            break;
+        }
+            
+        case SKTransferFailureReasonSenderNotAuthorized: {
+            result = Transfer::SENDER_NOT_AUTHORISED;
+            break;
+        }
+            
+        case SKTransferFailureReasonTooManyParallel: {
+            result = Transfer::TOO_MANY_PARALLEL;
+            break;
+        }
             
         default:
             break;

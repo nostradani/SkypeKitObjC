@@ -14,6 +14,20 @@ typedef enum {
 } SKTransferType;
 
 typedef enum {
+    SKTransferFailureReasonUnknown,
+    SKTransferFailureReasonSenderNotAuthorized,
+    SKTransferFailureReasonRemotelyCancelled,
+    SKTransferFailureReasonFailedRead,
+    SKTransferFailureReasonFailedRemoteRead,
+    SKTransferFailureReasonFailedWrite,
+    SKTransferFailureReasonFailedRemoteWrite,
+    SKTransferFailureReasonRemoteDoesNotSupportFt,
+    SKTransferFailureReasonRemoteOfflineForTooLong,
+    SKTransferFailureReasonTooManyParallel,
+    SKTransferFailureReasonPlaceholderTimeout,
+} SKTransferFailureReason;
+
+typedef enum {
     SKTransferStatusUnknown,
     SKTransferStatusNew,
     SKTransferStatusConnecting,
@@ -47,6 +61,7 @@ typedef enum {
     unsigned long long _fileSize;
     unsigned long long _transferedBytes;
     NSUInteger _transferSpeed;
+    SKTransferFailureReason _failureReason;
 }
 
 @property (nonatomic, readwrite, retain) id uniqueId;
@@ -58,6 +73,7 @@ typedef enum {
 @property (nonatomic, readonly) unsigned long long fileSize;
 @property (nonatomic, readonly) unsigned long long transferedBytes;
 @property (nonatomic, readonly) NSUInteger transferSpeed;
+@property (nonatomic, readonly) SKTransferFailureReason failureReason;
 
 - (BOOL) pause;
 - (BOOL) resume;

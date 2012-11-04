@@ -20,6 +20,7 @@
 - (unsigned long long) coreFileSize;
 - (unsigned long long) coreTransferedBytes;
 - (NSUInteger) coreTransferSpeed;
+- (SKTransferFailureReason) coreFailureReason;
 
 @property (nonatomic, assign, readwrite) SKTransferType type;
 @property (nonatomic, assign, readwrite) SKTransferStatus status;
@@ -27,6 +28,7 @@
 @property (nonatomic, assign, readwrite) unsigned long long fileSize;
 @property (nonatomic, assign, readwrite) unsigned long long transferedBytes;
 @property (nonatomic, assign, readwrite) NSUInteger transferSpeed;
+@property (nonatomic, assign, readwrite) SKTransferFailureReason failureReason;
     
 @end
 
@@ -108,6 +110,18 @@
     if (self.coreTransfer->GetPropBytespersecond(speed)) {
         [self markPropertyAsCached:@"transferSpeed"];
         result = speed;
+    }
+    
+    return result;
+}
+
+- (SKTransferFailureReason)coreFailureReason {
+    Transfer::FAILUREREASON reason;
+    SKTransferFailureReason result = SKTransferFailureReasonUnknown;
+    
+    if (self.coreTransfer->GetPropFailurereason(reason)) {
+        [self markPropertyAsCached:@"failureReason"];
+        result = [SKTransfer decodeFailureReason:reason];
     }
     
     return result;
@@ -199,6 +213,20 @@
     }
 }
 
+- (SKTransferFailureReason)failureReason {
+    if (![self isPropertyCached:@"failureReason"]) {
+        self->_failureReason = [self coreFailureReason];
+    }
+    
+    return self->_failureReason;
+}
+
+- (void)setFailureReason:(SKTransferFailureReason)failureReason {
+    if (self->_failureReason != failureReason) {
+        self->_failureReason = failureReason;
+    }
+}
+
 - (BOOL) pause {
     return self.coreTransfer->Pause();
 }
@@ -244,6 +272,11 @@
                 
             case Transfer::P_BYTESPERSECOND: {
                 self.transferSpeed = [self coreTransferSpeed];
+                break;
+            }
+                
+            case Transfer::P_FAILUREREASON: {
+                self.failureReason = [self coreFailureReason];
                 break;
             }
                 

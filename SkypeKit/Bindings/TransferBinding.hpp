@@ -27,6 +27,9 @@ protected:
 + (SKTransferStatus) decodeStatus:(Transfer::STATUS) status;
 + (Transfer::STATUS) encodeStatus:(SKTransferStatus) status;
 
++ (SKTransferFailureReason) decodeFailureReason:(Transfer::FAILUREREASON) reason;
++ (Transfer::FAILUREREASON) encodeFailureReason:(SKTransferFailureReason) reason;
+
 @property (nonatomic, readonly) TransferImp* coreTransfer;
 
 @end
