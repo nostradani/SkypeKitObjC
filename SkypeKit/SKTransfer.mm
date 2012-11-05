@@ -5,6 +5,7 @@
 #import "SKTransfer.h"
 
 #import <Foundation/NSString.h>
+#import <Foundation/NSNumberFormatter.h>
 
 #import "TransferBinding.hpp"
 
@@ -84,7 +85,10 @@
         
         if (self.coreTransfer->GetPropFilesize(size)) {
             [self markPropertyAsCached:@"fileSize"];
-            self->_fileSize = [[NSString stringWithUTF8String:size] unsignedLongLongValue];
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            NSNumber *number = [numberFormatter numberFromString:[NSString stringWithUTF8String:size]];
+            [numberFormatter release];
+            self->_fileSize = [number unsignedLongLongValue];
         }
     }
     
@@ -97,7 +101,10 @@
     
     if (self.coreTransfer->GetPropBytestransferred(size)) {
         [self markPropertyAsCached:@"transferedBytes"];
-        result = [[NSString stringWithUTF8String:size] unsignedLongLongValue];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        NSNumber *number = [numberFormatter numberFromString:[NSString stringWithUTF8String:size]];
+        [numberFormatter release];
+        result = [number unsignedLongLongValue];
     }
     
     return result;
