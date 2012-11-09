@@ -17,6 +17,7 @@
 
 #import "ParticipantBinding.hpp"
 #import "ConversationBinding.hpp"
+#import "TransferBinding.hpp"
 #import "MessageBinding.hpp"
 
 @interface SKConversation (Private)
@@ -365,16 +366,26 @@
     return result;
 }
 
-- (BOOL) postFiles:(NSArray*) fileNames text:(NSString*) text {
+- (SKMessage*) postFiles:(NSArray*) fileNames text:(NSString*) text errorCode:(SKTransferSendFileError *)errorCode errorFile:(NSString **)errorFile {
     Sid::List_Filename files;
-    TRANSFER_SENDFILE_ERROR errorCode;
-    Sid::Filename errorFile;
+    TRANSFER_SENDFILE_ERROR theErrorCode;
+    Sid::Filename theErrorFile;
+    SKMessage* result = nil;
+    MessageRef message;
     
     for (NSString* name in fileNames) {
         files.append([name cStringUsingEncoding:NSUTF8StringEncoding]);
     }
     
-    BOOL result = self.coreConversation->PostFiles(files, [text cStringUsingEncoding:NSUTF8StringEncoding], errorCode, errorFile);
+    if (self.coreConversation->PostFiles(files, [text cStringUsingEncoding:NSUTF8StringEncoding], theErrorCode, theErrorFile, message)) {
+        result = [SKObject resolve:message];
+    }
+    
+    if (theErrorFile != NULL) {
+        *errorFile = [NSString stringWithUTF8String:theErrorFile];
+    }
+    
+    *errorCode = [SKTransfer decodeSendFileError:theErrorCode];
     
     return result;
 }

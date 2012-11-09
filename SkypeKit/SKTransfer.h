@@ -44,6 +44,14 @@ typedef enum {
     SKTransferStatusCancelledByRemote
 } SKTransferStatus;
 
+typedef enum {
+    SKTransferSendFileErrorUnknown,
+    SKTransferSendFileErrorOpenSuccess,
+    SKTransferSendFileErrorBadFileName,
+    SKTransferSendFileErrorOpenFailed,
+    SKTransferSendFileErrorTooManyParallel,
+} SKTransferSendFileError;
+
 @protocol SKTransferDelegate <NSObject>
 
 - (void)transfer:(SKTransfer *)transfer didChangeBytesTransferred:(unsigned long long) bytes;

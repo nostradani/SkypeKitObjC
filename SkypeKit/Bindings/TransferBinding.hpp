@@ -30,6 +30,9 @@ protected:
 + (SKTransferFailureReason) decodeFailureReason:(Transfer::FAILUREREASON) reason;
 + (Transfer::FAILUREREASON) encodeFailureReason:(SKTransferFailureReason) reason;
 
++ (SKTransferSendFileError) decodeSendFileError:(TRANSFER_SENDFILE_ERROR) error;
++ (TRANSFER_SENDFILE_ERROR) encodeSendFileError:(SKTransferSendFileError) error;
+
 @property (nonatomic, readonly) TransferImp* coreTransfer;
 
 @end

@@ -265,5 +265,67 @@ TransferImp::~TransferImp() {
     
     return result;
 }
+
++ (SKTransferSendFileError)decodeSendFileError:(TRANSFER_SENDFILE_ERROR)error {
+    SKTransferSendFileError result = SKTransferSendFileErrorUnknown;
+    
+    switch (error) {
+        case TRANSFER_BAD_FILENAME: {
+            result = SKTransferSendFileErrorBadFileName;
+            break;
+        }
+            
+        case TRANSFER_OPEN_FAILED: {
+            result = SKTransferSendFileErrorOpenFailed;
+            break;
+        }
+            
+        case TRANSFER_TOO_MANY_PARALLEL: {
+            result = SKTransferSendFileErrorTooManyParallel;
+            break;
+        }
+            
+        case TRANSFER_OPEN_SUCCESS: {
+            result = SKTransferSendFileErrorOpenSuccess;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
+
++ (TRANSFER_SENDFILE_ERROR)encodeSendFileError:(SKTransferSendFileError)error {
+    TRANSFER_SENDFILE_ERROR result = TRANSFER_OPEN_FAILED;
+    
+    switch (error) {
+        case SKTransferSendFileErrorBadFileName: {
+            result = TRANSFER_BAD_FILENAME;
+            break;
+        }
+            
+        case SKTransferSendFileErrorOpenFailed: {
+            result = TRANSFER_OPEN_FAILED;
+            break;
+        }
+            
+        case SKTransferSendFileErrorTooManyParallel: {
+            result = TRANSFER_TOO_MANY_PARALLEL;
+            break;
+        }
+            
+        case SKTransferSendFileErrorOpenSuccess: {
+            result = TRANSFER_OPEN_SUCCESS;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return result;
+}
     
 @end

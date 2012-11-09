@@ -3,6 +3,7 @@
  */
 
 #import "SKParticipant.h"
+#import "SKTransfer.h"
 
 @class ConversationBinding;
 @class SKMessage;
@@ -115,7 +116,11 @@ typedef enum {
 - (NSImage *) metaPicture;
 
 - (SKMessage*) postText:(NSString*)text isXML:(BOOL)isXML;
-- (BOOL) postFiles:(NSArray*) fileNames text:(NSString*) text;
+
+- (SKMessage*) postFiles:(NSArray*) fileNames
+                    text:(NSString*) text
+               errorCode:(SKTransferSendFileError*) errorCode
+               errorFile:(NSString**) errorFile;
 
 - (NSSet*) participantsForFilter:(SKParticipantFilter) filter;
 

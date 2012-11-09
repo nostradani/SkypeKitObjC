@@ -15,6 +15,8 @@
 		650D3B4513BC6B13008A2778 /* TransferBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 650D3B4313BC6B13008A2778 /* TransferBinding.mm */; };
 		650D3B4913BC7176008A2778 /* SKTransfer.h in Headers */ = {isa = PBXBuildFile; fileRef = 650D3B4713BC7176008A2778 /* SKTransfer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		650D3B4A13BC7176008A2778 /* SKTransfer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 650D3B4813BC7176008A2778 /* SKTransfer.mm */; };
+		651AE74A164DBBA300B4164D /* libskypekit-cppwrapper_2_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AE73F164DBBA200B4164D /* libskypekit-cppwrapper_2_lib.a */; };
+		651AE74B164DBBA300B4164D /* libskypekit-cyassl_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AE740164DBBA200B4164D /* libskypekit-cyassl_lib.a */; };
 		65259D5B13CF4986002BF4B6 /* ObjectBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */; };
 		65259D5C13CF4986002BF4B6 /* ObjectBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */; };
 		65259D5F13CF5255002BF4B6 /* SKObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 65259D5D13CF5255002BF4B6 /* SKObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,8 +45,6 @@
 		659E87E613AE9CF90045F193 /* SKSkype.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E87D513AE9CF90045F193 /* SKSkype.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		659E87E713AE9CF90045F193 /* SKSkype.mm in Sources */ = {isa = PBXBuildFile; fileRef = 659E87D613AE9CF90045F193 /* SKSkype.mm */; };
 		65AB9B4313CA0149004DBF9F /* SKContactSearch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */; };
-		65AFB7B7162770650076F315 /* libskypekit-cppwrapper_2_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AFB7AD1627703D0076F315 /* libskypekit-cppwrapper_2_lib.a */; };
-		65AFB7B8162770650076F315 /* libskypekit-cyassl_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AFB7AB1627703D0076F315 /* libskypekit-cyassl_lib.a */; };
 		65D0F99913B349DB000AA38C /* SKConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F99713B349DB000AA38C /* SKConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D0F99A13B349DB000AA38C /* SKConversation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D0F99813B349DB000AA38C /* SKConversation.mm */; };
 		65D0F9A213B34B22000AA38C /* ConversationBinding.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65D0F9A013B34B22000AA38C /* ConversationBinding.hpp */; };
@@ -73,48 +73,6 @@
 			remoteGlobalIDString = 65878862162E08500055D4CA;
 			remoteInfo = SkypeKitRuntimeLauncher;
 		};
-		65AFB7AA1627703D0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E77AE880B4147658961BC00;
-			remoteInfo = "skypekit-cyassl_lib";
-		};
-		65AFB7AC1627703D0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 69A7C04B78AA4FBB97A7CC9E;
-			remoteInfo = "skypekit-cppwrapper_2_lib";
-		};
-		65AFB7AE1627703D0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 473F69D3199141F7ADA35CED;
-			remoteInfo = reference_opengl_lib;
-		};
-		65AFB7B01627703D0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 49FDE8A95A46404D9FCD84A5;
-			remoteInfo = skypekitclient;
-		};
-		65AFB7B31627705A0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4400B1C1F7644357B1BCC389;
-			remoteInfo = "skypekit-cyassl_lib";
-		};
-		65AFB7B51627705A0076F315 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AB64F70C21AE49A2BBD3F9B6;
-			remoteInfo = "skypekit-cppwrapper_2_lib";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,12 +92,12 @@
 		65005D6313C9FC4600293F84 /* ContactSearchBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ContactSearchBinding.hpp; sourceTree = "<group>"; };
 		65005D6413C9FC4600293F84 /* ContactSearchBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactSearchBinding.mm; sourceTree = "<group>"; };
 		65049B3215DBC298006050DB /* mac-x86-skypekit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "mac-x86-skypekit"; sourceTree = "<group>"; };
-		65049E9115DBC299006050DB /* libskypekit-cppwrapper_2_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cppwrapper_2_lib.a"; sourceTree = "<group>"; };
-		65049E9215DBC299006050DB /* libskypekit-cyassl_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cyassl_lib.a"; sourceTree = "<group>"; };
 		650D3B4213BC6B13008A2778 /* TransferBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransferBinding.hpp; sourceTree = "<group>"; };
 		650D3B4313BC6B13008A2778 /* TransferBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TransferBinding.mm; sourceTree = "<group>"; };
 		650D3B4713BC7176008A2778 /* SKTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTransfer.h; sourceTree = "<group>"; };
 		650D3B4813BC7176008A2778 /* SKTransfer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKTransfer.mm; sourceTree = "<group>"; };
+		651AE73F164DBBA200B4164D /* libskypekit-cppwrapper_2_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cppwrapper_2_lib.a"; sourceTree = "<group>"; };
+		651AE740164DBBA200B4164D /* libskypekit-cyassl_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libskypekit-cyassl_lib.a"; sourceTree = "<group>"; };
 		65259D5913CF4986002BF4B6 /* ObjectBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ObjectBinding.hpp; sourceTree = "<group>"; };
 		65259D5A13CF4986002BF4B6 /* ObjectBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectBinding.mm; sourceTree = "<group>"; };
 		65259D5D13CF5255002BF4B6 /* SKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKObject.h; sourceTree = "<group>"; };
@@ -170,7 +128,6 @@
 		659E87D613AE9CF90045F193 /* SKSkype.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKSkype.mm; sourceTree = "<group>"; };
 		659E87D813AE9CF90045F193 /* SkypeKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SkypeKit-Info.plist"; sourceTree = "<group>"; };
 		65AB9B4213CA0149004DBF9F /* SKContactSearch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKContactSearch.mm; sourceTree = "<group>"; };
-		65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = skypekitclient.xcodeproj; path = ../SkypeKitSDK/interfaces/skype/cpp_embedded/skypekitclient.xcodeproj; sourceTree = "<group>"; };
 		65D0F99713B349DB000AA38C /* SKConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKConversation.h; sourceTree = "<group>"; };
 		65D0F99813B349DB000AA38C /* SKConversation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKConversation.mm; sourceTree = "<group>"; };
 		65D0F9A013B34B22000AA38C /* ConversationBinding.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConversationBinding.hpp; sourceTree = "<group>"; };
@@ -204,10 +161,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AFB7B7162770650076F315 /* libskypekit-cppwrapper_2_lib.a in Frameworks */,
-				65AFB7B8162770650076F315 /* libskypekit-cyassl_lib.a in Frameworks */,
 				65456A7213B6614800DF7222 /* AppKit.framework in Frameworks */,
 				659E87C313AE9C4C0045F193 /* Foundation.framework in Frameworks */,
+				651AE74A164DBBA300B4164D /* libskypekit-cppwrapper_2_lib.a in Frameworks */,
+				651AE74B164DBBA300B4164D /* libskypekit-cyassl_lib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				65049B2415DBC298006050DB /* bin */,
-				65049E8C15DBC299006050DB /* interfaces */,
+				651AE73C164DBBA200B4164D /* lib */,
 			);
 			name = SkypeKitSDK;
 			path = ../../SkypeKitSDK;
@@ -249,37 +206,13 @@
 			path = "mac-x86";
 			sourceTree = "<group>";
 		};
-		65049E8C15DBC299006050DB /* interfaces */ = {
+		651AE73C164DBBA200B4164D /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				65049E8D15DBC299006050DB /* skype */,
+				651AE73F164DBBA200B4164D /* libskypekit-cppwrapper_2_lib.a */,
+				651AE740164DBBA200B4164D /* libskypekit-cyassl_lib.a */,
 			);
-			path = interfaces;
-			sourceTree = "<group>";
-		};
-		65049E8D15DBC299006050DB /* skype */ = {
-			isa = PBXGroup;
-			children = (
-				65049E8E15DBC299006050DB /* cpp_embedded */,
-			);
-			path = skype;
-			sourceTree = "<group>";
-		};
-		65049E8E15DBC299006050DB /* cpp_embedded */ = {
-			isa = PBXGroup;
-			children = (
-				65049E8F15DBC299006050DB /* build */,
-			);
-			path = cpp_embedded;
-			sourceTree = "<group>";
-		};
-		65049E8F15DBC299006050DB /* build */ = {
-			isa = PBXGroup;
-			children = (
-				65049E9115DBC299006050DB /* libskypekit-cppwrapper_2_lib.a */,
-				65049E9215DBC299006050DB /* libskypekit-cyassl_lib.a */,
-			);
-			path = build;
+			path = lib;
 			sourceTree = "<group>";
 		};
 		65878866162E08500055D4CA /* SkypeKitRuntimeLauncher */ = {
@@ -298,7 +231,6 @@
 				65878866162E08500055D4CA /* SkypeKitRuntimeLauncher */,
 				659E87AF13AE9C2F0045F193 /* Frameworks */,
 				659E87AE13AE9C2F0045F193 /* Products */,
-				65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,17 +325,6 @@
 			path = Bindings;
 			sourceTree = "<group>";
 		};
-		65AFB79F1627703D0076F315 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				65AFB7AB1627703D0076F315 /* libskypekit-cyassl_lib.a */,
-				65AFB7AD1627703D0076F315 /* libskypekit-cppwrapper_2_lib.a */,
-				65AFB7AF1627703D0076F315 /* libreference_opengl_lib.a */,
-				65AFB7B11627703D0076F315 /* skypekitclient */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -471,8 +392,6 @@
 			);
 			dependencies = (
 				65878872162E0A5F0055D4CA /* PBXTargetDependency */,
-				65AFB7B41627705A0076F315 /* PBXTargetDependency */,
-				65AFB7B61627705A0076F315 /* PBXTargetDependency */,
 			);
 			name = SkypeKit;
 			productName = SkypeKit;
@@ -497,12 +416,6 @@
 			mainGroup = 659E87A113AE9C2F0045F193;
 			productRefGroup = 659E87AE13AE9C2F0045F193 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 65AFB79F1627703D0076F315 /* Products */;
-					ProjectRef = 65AFB79E1627703D0076F315 /* skypekitclient.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				659E87AC13AE9C2F0045F193 /* SkypeKit */,
@@ -510,37 +423,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		65AFB7AB1627703D0076F315 /* libskypekit-cyassl_lib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libskypekit-cyassl_lib.a";
-			remoteRef = 65AFB7AA1627703D0076F315 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		65AFB7AD1627703D0076F315 /* libskypekit-cppwrapper_2_lib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libskypekit-cppwrapper_2_lib.a";
-			remoteRef = 65AFB7AC1627703D0076F315 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		65AFB7AF1627703D0076F315 /* libreference_opengl_lib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libreference_opengl_lib.a;
-			remoteRef = 65AFB7AE1627703D0076F315 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		65AFB7B11627703D0076F315 /* skypekitclient */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = skypekitclient;
-			remoteRef = 65AFB7B01627703D0076F315 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		659E87AB13AE9C2F0045F193 /* Resources */ = {
@@ -602,16 +484,6 @@
 			target = 65878862162E08500055D4CA /* SkypeKitRuntimeLauncher */;
 			targetProxy = 65878871162E0A5F0055D4CA /* PBXContainerItemProxy */;
 		};
-		65AFB7B41627705A0076F315 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "skypekit-cyassl_lib";
-			targetProxy = 65AFB7B31627705A0076F315 /* PBXContainerItemProxy */;
-		};
-		65AFB7B61627705A0076F315 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "skypekit-cppwrapper_2_lib";
-			targetProxy = 65AFB7B51627705A0076F315 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -670,7 +542,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SKYPEKIT_SDK}/**";
-				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/interfaces/skype/cpp_embedded/build";
+				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/lib";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -688,7 +560,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SKYPEKIT_SDK}/**";
-				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/interfaces/skype/cpp_embedded/build";
+				LIBRARY_SEARCH_PATHS = "${SKYPEKIT_SDK}/lib";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 				SKYPEKIT_SDK = "\"${SRCROOT}/../SkypeKitSDK\"";
@@ -743,6 +615,7 @@
 				6587886F162E08500055D4CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		659E87A613AE9C2F0045F193 /* Build configuration list for PBXProject "SkypeKit" */ = {
 			isa = XCConfigurationList;
